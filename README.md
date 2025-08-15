@@ -728,7 +728,6 @@ python api/client-examples/python_client.py demo
 ## 📚 リソース
 
 ### 📖 ドキュメント
-- **プロジェクト設定**: `CLAUDE.md`
 - **API詳細**: `API_USAGE_GUIDE.md`
 - **CLI詳細**: `CLI_USAGE_GUIDE.md`
 
