@@ -6,7 +6,7 @@
 [![Japanese](https://img.shields.io/badge/Language-Japanese%20Ready-red)](https://luatex-ja.osdn.jp/)
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://python.org)
 
-Docker環境で動作するLaTeX文書管理システム。学期・科目別のプロジェクト管理、11種類の専門テンプレート、CLI・API両対応。日本語LaTeX文書の作成・コンパイル・管理を効率化します。
+Docker環境で動作するLaTeX文書管理システム。学期・科目別のプロジェクト管理、11種類の専門テンプレート、CLI・API両対応。日本語LaTeX文書の作成・コンパイル・管理を効率化を目指す。
 
 ## ✨ 特徴
 
@@ -777,15 +777,3 @@ python api/client-examples/python_client.py demo
 このプロジェクトは [MIT License](LICENSE) の下で公開されています。
 
 ---
-
-## 📞 サポート
-
-質問や問題がある場合：
-
-1. [GitHub Issues](https://github.com/your-username/university-latex/issues)で検索
-2. 新しいIssueを作成
-3. [ディスカッション](https://github.com/your-username/university-latex/discussions)で質問
-
----
-
-**University LaTeX Project Management System** を使用して、効率的で美しい日本語LaTeX文書を作成しましょう！
