@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  latex:
+    build: ./docker
+    container_name: university-latex
+    volumes:
+      # プロジェクト全体をマウント
+      - .:/workspace
+      # TeXのキャッシュを永続化（コンパイル高速化）
+      - latex-cache:/var/lib/texmf
+      - latex-cache:/var/cache/texmf
+    environment:
+      # 現在の学期を環境変数で設定
+      - CURRENT_SEMESTER=2024-fall
+      # デフォルトのコンパイラ
+      - LATEX_COMPILER=lualatex
+    stdin_open: true
+    tty: true
+    working_dir: /workspace
+
+volumes:
+  latex-cache:
+    driver: local

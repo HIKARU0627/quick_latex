@@ -1,0 +1,416 @@
+\documentclass[12pt,a4paper]{ltjsarticle}
+
+% ===== 日本語フォント設定（LuaLaTeX用） =====
+\usepackage{luatexja-fontspec}
+
+% ===== 基本パッケージ =====
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{float}
+
+% ===== 色の定義 =====
+\definecolor{primaryblue}{RGB}{25, 102, 179}
+\definecolor{secondaryblue}{RGB}{52, 152, 219}
+\definecolor{accentorange}{RGB}{243, 156, 18}
+\definecolor{accentgreen}{RGB}{39, 174, 96}
+\definecolor{darkgray}{RGB}{52, 58, 64}
+\definecolor{lightgray}{RGB}{248, 249, 250}
+
+% ===== ハイパーリンク設定 =====
+\hypersetup{
+    colorlinks=true,
+    linkcolor=primaryblue,
+    filecolor=magenta,
+    urlcolor=primaryblue,
+    citecolor=primaryblue
+}
+
+% ===== カスタムコマンド =====
+\newcommand{\highlight}[1]{\textcolor{accentorange}{\textbf{#1}}}
+\newcommand{\important}[1]{\textcolor{red}{\textbf{#1}}}
+\newcommand{\note}[1]{\textcolor{accentgreen}{\textit{#1}}}
+
+% ===== 追加パッケージ =====
+\usepackage{enumitem}
+\usepackage{fancyvrb}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+
+% ===== 文書情報 =====
+\title{【授業名】ケーススタディレポート}
+\author{
+    学籍番号: 12345678\\
+    氏名: 山田 太郎\\
+    担当教員: ○○ ○○ 教授\\
+    提出日: \today
+}
+\date{}
+
+% ===== ケーススタディ用環境定義 =====
+\newtcolorbox{caseframe}[1][]{
+    colback=lightgray!20,
+    colframe=primaryblue,
+    fonttitle=\bfseries,
+    title={ケース概要},
+    #1
+}
+
+\newtcolorbox{analysisframe}[1][]{
+    colback=accentgreen!10,
+    colframe=accentgreen,
+    fonttitle=\bfseries,
+    title={分析ポイント},
+    #1
+}
+
+\newtcolorbox{proposalframe}[1][]{
+    colback=accentorange!10,
+    colframe=accentorange,
+    fonttitle=\bfseries,
+    title={提案・改善案},
+    #1
+}
+
+\begin{document}
+
+% ===== タイトルページ =====
+\maketitle
+
+% ===== 概要 =====
+\begin{abstract}
+本レポートでは、〇〇企業の△△に関するケーススタディを行う。
+当該企業が直面した課題を分析し、解決策を検討する。
+理論的フレームワークを用いて現状を分析し、
+実践的な改善提案を行うことを目的とする。
+\end{abstract}
+
+% ===== 目次 =====
+\tableofcontents
+\newpage
+
+% ===== 本文 =====
+\section{はじめに}
+
+\subsection{ケーススタディの目的}
+本ケーススタディの目的は以下の通りである：
+\begin{enumerate}
+    \item 実際の企業事例を通じて理論の実践的応用を学ぶ
+    \item 問題分析能力と解決策立案能力を向上させる
+    \item 複合的な視点から企業経営を理解する
+\end{enumerate}
+
+\subsection{分析手法}
+今回のケーススタディでは以下の分析手法を用いる：
+\begin{itemize}
+    \item SWOT分析（強み・弱み・機会・脅威）
+    \item 5フォース分析（競争環境分析）
+    \item バリューチェーン分析
+    \item 財務分析
+\end{itemize}
+
+\section{ケース概要}
+
+\begin{caseframe}
+\textbf{企業名：} ○○株式会社 \\
+\textbf{業界：} △△業界 \\
+\textbf{設立：} 19XX年 \\
+\textbf{従業員数：} 約X,XXX名 \\
+\textbf{売上高：} XXX億円（20XX年度） \\
+
+\vspace{0.5cm}
+\textbf{ケースの背景：}
+○○社は長年にわたり△△業界のリーディングカンパニーとして成長してきたが、
+近年の市場環境の変化により、従来のビジネスモデルの見直しを迫られている。
+特に、デジタル化の進展や新規参入企業の増加により、
+競争優位性の維持が困難になっている。
+\end{caseframe}
+
+\subsection{事業内容}
+○○社の主要事業は以下の通りである：
+
+\begin{enumerate}[label=(\arabic*)]
+    \item \textbf{コア事業：} △△の製造・販売
+    \item \textbf{関連事業：} □□サービスの提供
+    \item \textbf{新規事業：} ××分野への進出
+\end{enumerate}
+
+\subsection{財務状況}
+過去5年間の主要財務指標を表\ref{tab:financial}に示す。
+
+\begin{table}[H]
+\centering
+\caption{主要財務指標の推移}
+\label{tab:financial}
+\begin{tabular}{lrrrrr}
+\toprule
+指標 & 2019年 & 2020年 & 2021年 & 2022年 & 2023年 \\
+\midrule
+売上高（億円） & 1,200 & 1,150 & 1,100 & 1,080 & 1,050 \\
+営業利益（億円） & 120 & 100 & 85 & 70 & 60 \\
+営業利益率（\%） & 10.0 & 8.7 & 7.7 & 6.5 & 5.7 \\
+ROE（\%） & 8.5 & 7.2 & 6.1 & 5.0 & 4.2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{問題分析}
+
+\subsection{SWOT分析}
+
+\begin{analysisframe}
+\textbf{強み（Strengths）}
+\begin{itemize}
+    \item 長年培った技術力とブランド力
+    \item 安定した顧客基盤
+    \item 充実した販売ネットワーク
+    \item 豊富な財務基盤
+\end{itemize}
+
+\textbf{弱み（Weaknesses）}
+\begin{itemize}
+    \item デジタル技術への対応の遅れ
+    \item 組織の硬直化
+    \item 新規事業開発能力の不足
+    \item 若手人材の確保困難
+\end{itemize}
+
+\textbf{機会（Opportunities）}
+\begin{itemize}
+    \item 新興国市場の成長
+    \item デジタル化による新サービス創出
+    \item 環境配慮型製品への需要増加
+    \item 業界再編による市場シェア拡大
+\end{itemize}
+
+\textbf{脅威（Threats）}
+\begin{itemize}
+    \item 新規参入企業の台頭
+    \item 技術革新による製品の陳腐化
+    \item 原材料価格の上昇
+    \item 規制強化のリスク
+\end{itemize}
+\end{analysisframe}
+
+\subsection{競争環境分析（5フォース）}
+
+\subsubsection{買い手の交渉力}
+顧客の集約度が高く、価格交渉力が強い。特に大口顧客への依存度が高いため、
+価格競争に巻き込まれやすい状況にある。
+
+\subsubsection{売り手の交渉力}
+主要原材料の供給業者が限定的であり、原材料価格の上昇圧力を受けやすい。
+
+\subsubsection{新規参入の脅威}
+参入障壁は比較的高いものの、技術革新により新たなプレイヤーの参入が
+現実的となっている。
+
+\subsubsection{代替品の脅威}
+デジタル技術の進展により、従来製品を代替する新しいソリューションが
+登場している。
+
+\subsubsection{既存競合他社}
+業界内の競争は激化しており、価格競争とイノベーション競争の両面で
+圧力が増している。
+
+\section{課題の特定}
+
+前述の分析結果から、○○社が直面する主要課題を以下のように特定した：
+
+\begin{enumerate}
+    \item \highlight{デジタル変革の遅れ}
+    \begin{itemize}
+        \item DXへの取り組みが競合他社に比べて遅れている
+        \item 社内のデジタルリテラシー向上が急務
+    \end{itemize}
+    
+    \item \highlight{収益性の悪化}
+    \begin{itemize}
+        \item 営業利益率が年々低下している
+        \item コスト構造の見直しが必要
+    \end{itemize}
+    
+    \item \highlight{イノベーション創出力の不足}
+    \begin{itemize}
+        \item 新商品開発のスピードが遅い
+        \item 社内の創造性を促進する仕組みが不足
+    \end{itemize}
+    
+    \item \highlight{人材の確保・育成}
+    \begin{itemize}
+        \item 優秀な若手人材の獲得が困難
+        \item 既存社員のスキルアップが課題
+    \end{itemize}
+\end{enumerate}
+
+\section{解決策の提案}
+
+\begin{proposalframe}
+\subsection{短期的施策（1-2年）}
+
+\textbf{1. デジタル化の推進}
+\begin{itemize}
+    \item 社内業務プロセスのデジタル化
+    \item 従業員向けデジタルスキル研修の実施
+    \item 外部DXコンサルタントとの連携
+\end{itemize}
+
+\textbf{2. コスト構造の最適化}
+\begin{itemize}
+    \item 非効率な業務プロセスの見直し
+    \item 調達コストの削減
+    \item 間接費の圧縮
+\end{itemize}
+
+\subsection{中期的施策（3-5年）}
+
+\textbf{1. 新規事業の創出}
+\begin{itemize}
+    \item 社内ベンチャー制度の導入
+    \item オープンイノベーションの推進
+    \item 戦略的パートナーシップの構築
+\end{itemize}
+
+\textbf{2. 人材戦略の強化}
+\begin{itemize}
+    \item 多様な人材の積極採用
+    \item 人材育成プログラムの充実
+    \item 働き方改革の推進
+\end{itemize}
+
+\subsection{長期的施策（5-10年）}
+
+\textbf{1. ビジネスモデルの変革}
+\begin{itemize}
+    \item サービス事業への展開
+    \item プラットフォーム型ビジネスの構築
+    \item 持続可能な経営モデルの確立
+\end{itemize}
+\end{proposalframe}
+
+\section{実行計画}
+
+\subsection{優先順位と実行スケジュール}
+
+提案した施策の優先順位と実行スケジュールを表\ref{tab:schedule}に示す。
+
+\begin{table}[H]
+\centering
+\caption{施策の優先順位と実行スケジュール}
+\label{tab:schedule}
+\begin{tabular}{lcccp{5cm}}
+\toprule
+施策 & 優先度 & 開始時期 & 期間 & 期待効果 \\
+\midrule
+業務プロセスDX & 高 & 即時 & 12ヶ月 & 効率化・コスト削減 \\
+デジタル人材育成 & 高 & 3ヶ月後 & 継続 & 組織能力向上 \\
+コスト構造見直し & 高 & 即時 & 6ヶ月 & 収益性改善 \\
+新規事業開発 & 中 & 6ヶ月後 & 24ヶ月 & 成長基盤構築 \\
+働き方改革 & 中 & 6ヶ月後 & 18ヶ月 & 人材確保・定着 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{成功要因}
+
+提案施策を成功させるための重要な要因：
+
+\begin{enumerate}
+    \item \textbf{経営トップのコミットメント}
+    \begin{itemize}
+        \item 変革に対する強いリーダーシップ
+        \item 必要な投資の意思決定
+    \end{itemize}
+    
+    \item \textbf{組織全体の意識改革}
+    \begin{itemize}
+        \item 変化への抵抗を最小化
+        \item 新しい文化の醸成
+    \end{itemize}
+    
+    \item \textbf{適切なKPIの設定と監視}
+    \begin{itemize}
+        \item 定量的な成果指標の設定
+        \item 定期的な進捗レビュー
+    \end{itemize}
+\end{enumerate}
+
+\section{リスクと対策}
+
+\subsection{想定されるリスク}
+
+\begin{enumerate}
+    \item \textbf{実行リスク}
+    \begin{itemize}
+        \item 社内抵抗による実行の遅れ
+        \item 必要なスキル・ノウハウの不足
+    \end{itemize}
+    
+    \item \textbf{市場リスク}
+    \begin{itemize}
+        \item 市場環境の急速な変化
+        \item 競合他社の対抗策
+    \end{itemize}
+    
+    \item \textbf{財務リスク}
+    \begin{itemize}
+        \item 想定以上の投資コスト
+        \item 効果の発現遅れ
+    \end{itemize}
+\end{enumerate}
+
+\subsection{リスク対策}
+
+各リスクに対する具体的な対策を以下に示す：
+
+\begin{itemize}
+    \item \textbf{段階的実行：} 小規模パイロットから開始
+    \item \textbf{外部支援：} 専門コンサルタントの活用
+    \item \textbf{柔軟な計画：} 環境変化に応じた計画修正
+    \item \textbf{財務管理：} 厳格な投資回収管理
+\end{itemize}
+
+\section{結論}
+
+\subsection{まとめ}
+
+○○社は伝統的な強みを持つ一方で、デジタル化の遅れや競争激化により
+厳しい経営環境に直面している。本ケーススタディで提案した施策は、
+同社の課題解決と持続的成長を実現するための包括的なアプローチである。
+
+特に重要なのは、\highlight{デジタル変革}と\highlight{人材戦略}を両輪として
+推進することである。短期的な収益改善と中長期的な成長基盤の構築を
+バランスよく進めることが成功の鍵となる。
+
+\subsection{学んだこと}
+
+本ケーススタディを通じて学んだ主な点：
+
+\begin{enumerate}
+    \item 理論的フレームワークの実践的応用の重要性
+    \item 複眼的視点による問題分析の必要性
+    \item 実行可能性を考慮した提案の価値
+    \item 変革におけるリーダーシップの重要性
+\end{enumerate}
+
+\subsection{今後の課題}
+
+\begin{itemize}
+    \item より詳細な財務シミュレーションの実施
+    \item 業界他社との比較分析の深化
+    \item ステークホルダー分析の充実
+    \item 実装戦略の具体化
+\end{itemize}
+
+% ===== 参考文献 =====
+\begin{thebibliography}{9}
+\bibitem{ref1} Porter, M.E., 『競争戦略論』, ダイヤモンド社, 2018年.
+\bibitem{ref2} Kotter, J.P., 『企業変革力』, 日経BP社, 2019年.
+\bibitem{ref3} 野中郁次郎, 『知識創造企業』, 東洋経済新報社, 2020年.
+\bibitem{ref4} ○○業界動向調査, 経済産業省, 2023年.
+\bibitem{ref5} デジタル変革に関する企業調査, 日本生産性本部, 2023年.
+\end{thebibliography}
+
+\end{document}

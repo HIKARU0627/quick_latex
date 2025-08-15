@@ -1,0 +1,331 @@
+% 数学レポート用テンプレート
+\documentclass[11pt,a4paper]{ltjsarticle}
+
+% パッケージの読み込み
+\usepackage{luatexja}
+\usepackage{luatexja-fontspec}
+\usepackage[margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{braket}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{tcolorbox}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{hyperref}
+
+% フォント設定
+\setmainfont{Noto Serif CJK JP}
+\setsansfont{Noto Sans CJK JP}
+\setmonofont{Noto Sans Mono CJK JP}
+
+% 数学環境の設定
+\theoremstyle{definition}
+\newtheorem{definition}{定義}[section]
+\newtheorem{theorem}{定理}[section]
+\newtheorem{lemma}[theorem]{補題}
+\newtheorem{corollary}[theorem]{系}
+\newtheorem{proposition}[theorem]{命題}
+
+\theoremstyle{remark}
+\newtheorem{remark}{注意}[section]
+\newtheorem{example}{例}[section]
+
+\theoremstyle{plain}
+\newtheorem{problem}{問題}[section]
+\newtheorem{exercise}{演習}[section]
+
+% 証明環境の日本語化
+\renewcommand{\proofname}{証明}
+
+% 色の定義
+\definecolor{accentblue}{RGB}{41,128,185}
+\definecolor{accentgreen}{RGB}{39,174,96}
+\definecolor{accentorange}{RGB}{230,126,34}
+\definecolor{accentred}{RGB}{231,76,60}
+
+% tcolorboxのスタイル定義
+\newtcolorbox{mathframe}[1][]{
+    colback=accentblue!10,
+    colframe=accentblue,
+    fonttitle=\bfseries,
+    title={重要な数学概念},
+    #1
+}
+
+\newtcolorbox{proofframe}[1][]{
+    colback=accentgreen!10,
+    colframe=accentgreen,
+    fonttitle=\bfseries,
+    title={証明のポイント},
+    #1
+}
+
+\newtcolorbox{notebox}[1][]{
+    colback=accentorange!10,
+    colframe=accentorange,
+    fonttitle=\bfseries,
+    title={注意},
+    #1
+}
+
+% 数学記号のショートカット
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+
+% ベクトル記法
+\renewcommand{\vec}[1]{\boldsymbol{#1}}
+\newcommand{\norm}[1]{\left\| #1 \right\|}
+\newcommand{\abs}[1]{\left| #1 \right|}
+
+% 微分・積分記法
+\newcommand{\dx}{\,dx}
+\newcommand{\dy}{\,dy}
+\newcommand{\dz}{\,dz}
+\newcommand{\dt}{\,dt}
+\newcommand{\du}{\,du}
+\newcommand{\dv}{\,dv}
+\newcommand{\diff}[2]{\frac{d#1}{d#2}}
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}}
+
+% ヘッダー・フッター設定
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{数学レポート}
+\fancyhead[R]{\today}
+\fancyfoot[C]{\thepage}
+
+% ハイパーリンク設定
+\hypersetup{
+    colorlinks=true,
+    linkcolor=accentblue,
+    urlcolor=accentblue,
+    citecolor=accentblue
+}
+
+% タイトル情報
+\title{\Huge\textbf{数学レポート題目}}
+\author{学籍番号：XXXXXXXX \\氏名：山田 太郎}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+\clearpage
+
+\section{はじめに}
+
+本レポートでは、〇〇に関する数学的理論について考察する。特に、△△の性質と□□との関連性について詳細に分析し、その数学的意義を明らかにする。
+
+\begin{mathframe}
+このレポートで扱う主要な数学概念：
+\begin{itemize}
+    \item 概念1：具体的な定義や性質
+    \item 概念2：関連する定理や応用
+    \item 概念3：実際の計算例や証明
+\end{itemize}
+\end{mathframe}
+
+\section{理論的背景}
+
+\subsection{基本定義}
+
+\begin{definition}[重要な概念]
+実数体$\R$上のベクトル空間$V$において、内積を次のように定義する：
+\begin{equation}
+    \langle \vec{u}, \vec{v} \rangle : V \times V \to \R
+\end{equation}
+ここで、以下の性質を満たす：
+\begin{enumerate}[(1)]
+    \item 双線形性：$\langle a\vec{u}_1 + b\vec{u}_2, \vec{v} \rangle = a\langle \vec{u}_1, \vec{v} \rangle + b\langle \vec{u}_2, \vec{v} \rangle$
+    \item 対称性：$\langle \vec{u}, \vec{v} \rangle = \langle \vec{v}, \vec{u} \rangle$
+    \item 正定値性：$\langle \vec{v}, \vec{v} \rangle \geq 0$、等号は$\vec{v} = \vec{0}$のときのみ
+\end{enumerate}
+\end{definition}
+
+\subsection{主要定理}
+
+\begin{theorem}[コーシー・シュワルツの不等式]
+\label{thm:cauchy-schwarz}
+内積空間$(V, \langle \cdot, \cdot \rangle)$において、任意のベクトル$\vec{u}, \vec{v} \in V$に対して
+\begin{equation}
+    |\langle \vec{u}, \vec{v} \rangle|^2 \leq \langle \vec{u}, \vec{u} \rangle \langle \vec{v}, \vec{v} \rangle
+\end{equation}
+が成り立つ。等号は$\vec{u}$と$\vec{v}$が線形従属のときのみ成立する。
+\end{theorem}
+
+\begin{proof}
+$\vec{v} = \vec{0}$の場合は自明である。$\vec{v} \neq \vec{0}$とする。
+
+任意の実数$t$に対して、内積の正定値性より
+\begin{equation}
+    0 \leq \langle \vec{u} - t\vec{v}, \vec{u} - t\vec{v} \rangle
+\end{equation}
+
+\begin{proofframe}
+証明の鍵となるアイデア：
+\begin{itemize}
+    \item 適切なパラメータ$t$を選んで二次式を構成
+    \item 判別式を用いて不等式を導出
+    \item 等号条件を線形従属性と関連付け
+\end{itemize}
+\end{proofframe}
+
+双線形性を用いて展開すると：
+\begin{align}
+    0 &\leq \langle \vec{u}, \vec{u} \rangle - 2t\langle \vec{u}, \vec{v} \rangle + t^2\langle \vec{v}, \vec{v} \rangle
+\end{align}
+
+この二次式が任意の$t$で非負であるための条件は、判別式$D \leq 0$である：
+\begin{equation}
+    D = 4\langle \vec{u}, \vec{v} \rangle^2 - 4\langle \vec{u}, \vec{u} \rangle\langle \vec{v}, \vec{v} \rangle \leq 0
+\end{equation}
+
+よって求める不等式が得られる。\qed
+\end{proof}
+
+\section{具体的計算例}
+
+\subsection{例1：ユークリッド空間での計算}
+
+\begin{example}
+$\R^3$において、ベクトル$\vec{u} = (1, 2, 3)$、$\vec{v} = (4, 5, 6)$に対してコーシー・シュワルツの不等式を確認する。
+
+標準内積は：
+\begin{equation}
+    \langle \vec{u}, \vec{v} \rangle = 1 \cdot 4 + 2 \cdot 5 + 3 \cdot 6 = 4 + 10 + 18 = 32
+\end{equation}
+
+各ベクトルのノルムの二乗は：
+\begin{align}
+    \norm{\vec{u}}^2 &= 1^2 + 2^2 + 3^2 = 14 \\
+    \norm{\vec{v}}^2 &= 4^2 + 5^2 + 6^2 = 77
+\end{align}
+
+コーシー・シュワルツの不等式を確認：
+\begin{equation}
+    32^2 = 1024 \leq 14 \times 77 = 1078 \quad \checkmark
+\end{equation}
+\end{example}
+
+\subsection{例2：関数空間での応用}
+
+連続関数の空間$C[0,1]$において、内積を
+\begin{equation}
+    \langle f, g \rangle = \int_0^1 f(x)g(x) \dx
+\end{equation}
+で定義する。
+
+\begin{example}
+$f(x) = x$、$g(x) = x^2$に対して：
+\begin{align}
+    \langle f, g \rangle &= \int_0^1 x \cdot x^2 \dx = \int_0^1 x^3 \dx = \left[ \frac{x^4}{4} \right]_0^1 = \frac{1}{4} \\
+    \norm{f}^2 &= \int_0^1 x^2 \dx = \frac{1}{3} \\
+    \norm{g}^2 &= \int_0^1 x^4 \dx = \frac{1}{5}
+\end{align}
+
+コーシー・シュワルツの不等式：
+\begin{equation}
+    \left(\frac{1}{4}\right)^2 = \frac{1}{16} \leq \frac{1}{3} \times \frac{1}{5} = \frac{1}{15} \quad \checkmark
+\end{equation}
+\end{example}
+
+\section{発展的考察}
+
+\subsection{一般化と応用}
+
+\begin{notebox}
+コーシー・シュワルツの不等式は以下のような様々な分野で応用される：
+\begin{itemize}
+    \item 確率論：確率変数の共分散に関する不等式
+    \item 調和解析：フーリエ変換の性質
+    \item 最適化：制約付き最適化問題
+    \item 幾何学：角度と距離の関係
+\end{itemize}
+\end{notebox}
+
+\subsection{数値計算による検証}
+
+図\ref{fig:inequality-plot}に、様々なベクトルペアに対するコーシー・シュワルツの不等式の成立状況を示す。
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            xlabel={$\langle \vec{u}, \vec{v} \rangle^2$},
+            ylabel={$\norm{\vec{u}}^2 \norm{\vec{v}}^2$},
+            grid=major,
+            legend pos=north west,
+            width=10cm,
+            height=8cm
+        ]
+        \addplot[blue, mark=*] coordinates {
+            (1, 2) (4, 8) (9, 15) (16, 25) (25, 40) (36, 60) (49, 85) (64, 115)
+        };
+        \addplot[red, dashed] {x};
+        \legend{データ点, $y = x$（等号線）}
+        \end{axis}
+    \end{tikzpicture}
+    \caption{コーシー・シュワルツの不等式の視覚的確認}
+    \label{fig:inequality-plot}
+\end{figure}
+
+\section{演習問題}
+
+\begin{exercise}
+次の問いに答えよ：
+\begin{enumerate}[(1)]
+    \item $\R^n$において、ベクトル$\vec{u} = (u_1, u_2, \ldots, u_n)$、$\vec{v} = (v_1, v_2, \ldots, v_n)$に対するコーシー・シュワルツの不等式を具体的に書け。
+    \item 等号が成立する条件を線形代数の観点から説明せよ。
+    \item 三角不等式$\norm{\vec{u} + \vec{v}} \leq \norm{\vec{u}} + \norm{\vec{v}}$をコーシー・シュワルツの不等式を用いて証明せよ。
+\end{enumerate}
+\end{exercise}
+
+\begin{problem}
+関数空間$L^2[0, 2\pi]$において、内積を
+\begin{equation}
+    \langle f, g \rangle = \int_0^{2\pi} f(x)g(x) \dx
+\end{equation}
+で定義する。$f(x) = \sin x$、$g(x) = \cos x$に対してコーシー・シュワルツの不等式を確認し、等号が成立しない理由を説明せよ。
+\end{problem}
+
+\section{まとめ}
+
+本レポートでは、内積空間におけるコーシー・シュワルツの不等式について詳細に考察した。主な成果は以下の通りである：
+
+\begin{enumerate}
+    \item 定理の厳密な証明を判別式を用いて行った
+    \item ユークリッド空間と関数空間における具体例を計算した
+    \item 不等式の幾何学的・解析学的意味を明らかにした
+    \item 数値計算による検証を通じて理論の妥当性を確認した
+\end{enumerate}
+
+\begin{mathframe}[title={今後の課題}]
+\begin{itemize}
+    \item より一般的な内積空間（複素数体上）での拡張
+    \item ヘルダーの不等式やミンコフスキーの不等式との関連
+    \item 関数解析への応用（ヒルベルト空間論）
+\end{itemize}
+\end{mathframe}
+
+この不等式は現代数学の基礎として、線形代数、関数解析、確率論など幅広い分野で重要な役割を果たしている。
+
+\begin{thebibliography}{99}
+\bibitem{axler} S. Axler, \textit{Linear Algebra Done Right}, 3rd Edition, Springer, 2015.
+\bibitem{rudin} W. Rudin, \textit{Principles of Mathematical Analysis}, 3rd Edition, McGraw-Hill, 1976.
+\bibitem{halmos} P. R. Halmos, \textit{Finite-Dimensional Vector Spaces}, Springer, 1987.
+\bibitem{japanese1} 齋藤正彦, 『線型代数入門』, 東京大学出版会, 1966.
+\bibitem{japanese2} 杉浦光夫, 『解析入門I』, 東京大学出版会, 1980.
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,493 @@
+\documentclass[12pt,a4paper]{ltjsarticle}
+
+% ===== 共通スタイルパッケージの読み込み =====
+\usepackage[japanese]{../../../common/university-style}
+
+% ===== 追加パッケージ =====
+\usepackage{enumitem}
+\usepackage{mdframed}
+\usepackage{tcolorbox}
+
+% ===== 大学情報設定 =====
+\university{○○大学}
+\department{○○学部○○学科}
+\studentid{12345678}
+\supervisor{担当教員：○○ ○○ 教授}
+
+% ===== 文書情報 =====
+\title{【授業名】文献レビューレポート}
+\author{山田 太郎}
+\date{\today}
+
+% ===== レビュー用環境定義 =====
+\newtcolorbox{bookinfo}[1][]{
+    colback=lightgray!10,
+    colframe=primaryblue,
+    fonttitle=\bfseries,
+    title={文献情報},
+    #1
+}
+
+\newtcolorbox{summary}[1][]{
+    colback=accentgreen!10,
+    colframe=accentgreen,
+    fonttitle=\bfseries,
+    title={要約},
+    #1
+}
+
+\newtcolorbox{critique}[1][]{
+    colback=accentorange!10,
+    colframe=accentorange,
+    fonttitle=\bfseries,
+    title={批判的評価},
+    #1
+}
+
+\newtcolorbox{relevance}[1][]{
+    colback=secondaryblue!10,
+    colframe=secondaryblue,
+    fonttitle=\bfseries,
+    title={研究との関連性},
+    #1
+}
+
+% ===== 評価用マクロ =====
+\newcommand{\rating}[1]{%
+    \begin{tikzpicture}[baseline=-0.3ex]
+        \foreach \i in {1,...,5} {
+            \ifnum\i<=#1
+                \fill[accentorange] (\i*0.3-0.15,0) -- (\i*0.3,0.15) -- (\i*0.3+0.15,0) -- (\i*0.3,0.3) -- (\i*0.3-0.15,0.15) -- cycle;
+            \else
+                \draw[accentorange] (\i*0.3-0.15,0) -- (\i*0.3,0.15) -- (\i*0.3+0.15,0) -- (\i*0.3,0.3) -- (\i*0.3-0.15,0.15) -- cycle;
+            \fi
+        }
+    \end{tikzpicture}
+}
+
+\begin{document}
+
+% ===== タイトルページ =====
+\reportheader
+
+% ===== 概要 =====
+\begin{abstract}
+本レポートでは、〇〇分野における主要文献のレビューを行う。
+特に△△に関する研究動向を把握し、現在の研究課題と今後の方向性を明らかにする。
+複数の論文・書籍を体系的に分析し、批判的な評価を通じて
+当該分野の理解を深めることを目的とする。
+\end{abstract}
+
+% ===== 目次 =====
+\tableofcontents
+\newpage
+
+% ===== 本文 =====
+\section{はじめに}
+
+\subsection{レビューの目的}
+本文献レビューの目的は以下の通りである：
+
+\begin{enumerate}
+    \item 〇〇分野の研究動向を体系的に把握する
+    \item 主要理論・概念の発展過程を理解する
+    \item 現在の研究課題と未解決問題を特定する
+    \item 今後の研究方向性を検討する材料を得る
+\end{enumerate}
+
+\subsection{レビュー範囲と方法}
+\begin{itemize}
+    \item \textbf{対象期間：} 2010年〜2024年
+    \item \textbf{対象文献：} 学術論文、著書、報告書
+    \item \textbf{検索方法：} CiNii、J-STAGE、Google Scholar等を活用
+    \item \textbf{選定基準：} 被引用数、掲載誌のインパクトファクター、内容の関連性
+\end{itemize}
+
+\section{文献レビュー}
+
+\subsection{理論的基盤に関する文献}
+
+\subsubsection{文献1：基礎理論の確立}
+
+\begin{bookinfo}
+\textbf{著者：} Smith, J. A. \\
+\textbf{タイトル：} ``Foundations of Modern Theory'' \\
+\textbf{出版：} Academic Press, 2015 \\
+\textbf{ページ数：} 352p \\
+\textbf{被引用数：} 1,245回（Google Scholar）
+\end{bookinfo}
+
+\begin{summary}
+本書は〇〇理論の基礎的枠組みを体系的に論じた包括的な研究である。
+著者は従来の△△アプローチの限界を指摘し、新しい理論的パラダイムを提示している。
+
+主要な論点：
+\begin{itemize}
+    \item 従来理論の批判的検討
+    \item 新理論の概念的枠組み
+    \item 実証研究による理論の検証
+    \item 実務への応用可能性
+\end{itemize}
+
+特に第3章で提示された「〇〇モデル」は、その後の研究に大きな影響を与えている。
+\end{summary}
+
+\begin{critique}
+\textbf{長所：}
+\begin{itemize}
+    \item 理論的枠組みが明確で論理的
+    \item 豊富な実証データによる裏付け
+    \item 既存研究との関連性が明確
+    \item 実務家にも理解しやすい記述
+\end{itemize}
+
+\textbf{短所・限界：}
+\begin{itemize}
+    \item 分析対象が特定地域に限定
+    \item 時系列データの期間が短い
+    \item 代替仮説の検討が不十分
+    \item 理論の一般化可能性に疑問
+\end{itemize}
+
+\textbf{総合評価：} \rating{4} / 5
+\end{critique}
+
+\begin{relevance}
+本研究で提示された「〇〇モデル」は、筆者の研究テーマである△△の分析において
+有用な理論的枠組みを提供する。特に、□□の関係性を説明する上で重要な示唆を与える。
+\end{relevance}
+
+\subsubsection{文献2：理論の発展と応用}
+
+\begin{bookinfo}
+\textbf{著者：} 田中一郎 \\
+\textbf{タイトル：} 「現代〇〇理論の展開」 \\
+\textbf{出版：} 東京大学出版会, 2018年 \\
+\textbf{ページ数：} 298p \\
+\textbf{被引用数：} 567回
+\end{bookinfo}
+
+\begin{summary}
+Smith（2015）の理論をベースに、日本の文脈における〇〇理論の適用可能性を検討した研究。
+特に、文化的要因が理論の有効性に与える影響に焦点を当てている。
+
+主要な貢献：
+\begin{itemize}
+    \item 文化的要因を考慮した理論修正
+    \item 日本企業での実証研究
+    \item 実務への応用指針の提示
+    \item 今後の研究課題の特定
+\end{itemize}
+\end{summary}
+
+\begin{critique}
+\textbf{長所：}
+\begin{itemize}
+    \item 文化的コンテキストへの着目は重要
+    \item 実証研究の設計が適切
+    \item 理論と実践の橋渡しに成功
+\end{itemize}
+
+\textbf{短所・限界：}
+\begin{itemize}
+    \item サンプルサイズが小さい
+    \item 業界の偏りがある
+    \item 因果関係の特定が不十分
+\end{itemize}
+
+\textbf{総合評価：} \rating{3} / 5
+\end{critique}
+
+\subsection{実証研究に関する文献}
+
+\subsubsection{文献3：大規模実証研究}
+
+\begin{bookinfo}
+\textbf{著者：} Johnson, M. K. et al. \\
+\textbf{タイトル：} ``Large-scale Empirical Analysis of XX Phenomenon'' \\
+\textbf{掲載誌：} Journal of XX Studies, Vol.45, No.3 \\
+\textbf{出版年：} 2020年 \\
+\textbf{ページ：} pp.123-145 \\
+\textbf{被引用数：} 892回
+\end{bookinfo}
+
+\begin{summary}
+15カ国、1,200社を対象とした大規模な実証研究。
+〇〇と△△の関係性について統計的分析を行い、
+従来の理論予測を部分的に支持する結果を得ている。
+
+研究手法：
+\begin{itemize}
+    \item 多変量回帰分析
+    \item パネルデータ分析
+    \item 構造方程式モデリング
+    \item ロバストネスチェック
+\end{itemize}
+
+主要な発見：
+\begin{itemize}
+    \item 〇〇と△△の間に正の相関関係
+    \item 業界による効果の差異
+    \item 時系列的な関係性の変化
+    \item 文化的要因の調整効果
+\end{itemize}
+\end{summary}
+
+\begin{critique}
+\textbf{長所：}
+\begin{itemize}
+    \item 大規模データによる頑健な結果
+    \item 厳密な統計分析手法
+    \item 国際比較の視点
+    \item 詳細なロバストネスチェック
+\end{itemize}
+
+\textbf{短所・限界：}
+\begin{itemize}
+    \item データの質のばらつき
+    \item 内生性の問題への対処不足
+    \item 理論的含意の議論が浅い
+    \item 実務的示唆が限定的
+\end{itemize}
+
+\textbf{総合評価：} \rating{4} / 5
+\end{critique}
+
+\section{研究動向の分析}
+
+\subsection{時系列的な発展}
+
+〇〇分野の研究は以下のような発展を遂げている：
+
+\begin{description}
+    \item[2010-2015年] 基礎理論の確立期
+    \begin{itemize}
+        \item 概念的枠組みの構築
+        \item 小規模実証研究の蓄積
+    \end{itemize}
+    
+    \item[2016-2020年] 理論の精緻化・実証期
+    \begin{itemize}
+        \item 大規模データによる検証
+        \item 国際比較研究の増加
+        \item 応用分野の拡大
+    \end{itemize}
+    
+    \item[2021-現在] 応用・統合期
+    \begin{itemize}
+        \item AI・ビッグデータの活用
+        \item 学際的アプローチの導入
+        \item 実務への応用強化
+    \end{itemize}
+\end{description}
+
+\subsection{主要な理論的貢献}
+
+レビューした文献から抽出される主要な理論的貢献：
+
+\begin{enumerate}
+    \item \highlight{統合理論の提示}
+    \begin{itemize}
+        \item 従来の個別理論を統合した包括的枠組み
+        \item 多層的・多面的な分析視角の提供
+    \end{itemize}
+    
+    \item \highlight{実証方法論の革新}
+    \begin{itemize}
+        \item 新しい測定尺度の開発
+        \item 因果推論手法の導入
+        \item ビッグデータ分析の活用
+    \end{itemize}
+    
+    \item \highlight{応用領域の拡大}
+    \begin{itemize}
+        \item 異業界への理論適用
+        \item 政策領域への応用
+        \item 国際比較研究の発展
+    \end{itemize}
+\end{enumerate}
+
+\section{批判的評価}
+
+\subsection{現在の研究の強み}
+
+\begin{itemize}
+    \item \textbf{理論的成熟度：} 基礎理論から応用まで体系的な発展
+    \item \textbf{実証的厳密性：} 統計的に厳密な分析手法の確立
+    \item \textbf{実用性：} 実務への応用可能性の向上
+    \item \textbf{国際性：} グローバルな研究ネットワークの形成
+\end{itemize}
+
+\subsection{課題と限界}
+
+\begin{enumerate}
+    \item \textbf{理論的課題}
+    \begin{itemize}
+        \item 統一的な理論枠組みの欠如
+        \item ミクロ・マクロレベルの接続不足
+        \item 動態的側面の理論化不足
+    \end{itemize}
+    
+    \item \textbf{方法論的課題}
+    \begin{itemize}
+        \item 因果関係の特定困難
+        \item 測定の信頼性・妥当性の問題
+        \item 長期的データの不足
+    \end{itemize}
+    
+    \item \textbf{実践的課題}
+    \begin{itemize}
+        \item 理論と実践のギャップ
+        \item 実装の複雑性
+        \item 効果測定の困難
+    \end{itemize}
+\end{enumerate}
+
+\section{今後の研究方向性}
+
+\subsection{理論的発展の方向性}
+
+\begin{enumerate}
+    \item \textbf{統合理論の構築}
+    \begin{itemize}
+        \item 多領域理論の統合
+        \item レベル横断的な理論構築
+        \item 動態的理論モデルの開発
+    \end{itemize}
+    
+    \item \textbf{新たな視点の導入}
+    \begin{itemize}
+        \item 行動経済学的アプローチ
+        \item ネットワーク理論の活用
+        \item 複雑系理論の応用
+    \end{itemize}
+\end{enumerate}
+
+\subsection{方法論的革新}
+
+\begin{itemize}
+    \item \textbf{新技術の活用}
+    \begin{itemize}
+        \item 機械学習・AI技術の導入
+        \item リアルタイムデータ分析
+        \item 自然実験の活用
+    \end{itemize}
+    
+    \item \textbf{研究設計の改善}
+    \begin{itemize}
+        \item 混合研究法の活用
+        \item 縦断的研究の増加
+        \item 多層分析の精緻化
+    \end{itemize}
+\end{itemize}
+
+\subsection{応用分野の拡大}
+
+今後期待される応用分野：
+
+\begin{multicols}{2}
+\begin{itemize}
+    \item デジタル化対応
+    \item 持続可能性
+    \item グローバル化
+    \item 少子高齢化対応
+    \item AI・ロボット活用
+    \item 働き方改革
+    \item 地方創生
+    \item 災害対応
+\end{itemize}
+\end{multicols}
+
+\section{結論}
+
+\subsection{主要な発見}
+
+本文献レビューを通じて以下の点が明らかになった：
+
+\begin{enumerate}
+    \item 〇〇分野は過去15年間で著しい発展を遂げた
+    \item 理論的基盤は確立されているが、統合的枠組みが必要
+    \item 実証研究の蓄積は進んでいるが、方法論的課題が残存
+    \item 実務応用は進展しているが、効果測定に課題
+\end{enumerate}
+
+\subsection{研究への示唆}
+
+本レビューから得られた研究への示唆：
+
+\begin{itemize}
+    \item \textbf{理論的貢献の機会：} 統合理論構築の余地
+    \item \textbf{方法論的改善点：} 因果推論手法の活用
+    \item \textbf{実証研究の方向性：} 長期的・多面的分析の必要性
+    \item \textbf{実践的価値：} 実装支援ツールの開発
+\end{itemize}
+
+\subsection{今後の課題}
+
+今後取り組むべき課題：
+
+\begin{enumerate}
+    \item より包括的な文献収集と分析
+    \item 質的研究文献の系統的レビュー
+    \item 実務家の視点を含めた評価
+    \item 国際的な研究動向の詳細分析
+\end{enumerate}
+
+% ===== 付録 =====
+\section*{付録}
+\addcontentsline{toc}{section}{付録}
+
+\subsection*{A. レビュー対象文献一覧}
+
+\begin{longtable}{p{3cm}p{6cm}p{2cm}p{2cm}}
+\caption{レビュー対象文献一覧} \\
+\toprule
+著者 & タイトル & 出版年 & 評価 \\
+\midrule
+\endfirsthead
+\caption{レビュー対象文献一覧（続き）} \\
+\toprule
+著者 & タイトル & 出版年 & 評価 \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+Smith, J.A. & Foundations of Modern Theory & 2015 & \rating{4} \\
+田中一郎 & 現代〇〇理論の展開 & 2018 & \rating{3} \\
+Johnson, M.K. & Large-scale Empirical Analysis & 2020 & \rating{4} \\
+佐藤花子 & 日本企業における〇〇の実態 & 2019 & \rating{3} \\
+Brown, P.L. & Cross-cultural Perspectives & 2021 & \rating{4} \\
+山田太郎 & 〇〇理論の実証的検証 & 2022 & \rating{3} \\
+Wilson, R.T. & Future Directions in XX Research & 2023 & \rating{5} \\
+\end{longtable}
+
+\subsection*{B. 検索戦略}
+
+使用したキーワードと検索式：
+\begin{itemize}
+    \item "〇〇理論" AND "実証研究"
+    \item "organizational XX" AND "empirical"
+    \item "日本企業" AND "〇〇"
+    \item "cross-cultural" AND "XX theory"
+\end{itemize}
+
+% ===== 参考文献 =====
+\bibliographystyle{plainnat}
+\begin{thebibliography}{20}
+\bibitem{smith2015} Smith, J.A. (2015). \textit{Foundations of Modern Theory}. Academic Press.
+
+\bibitem{tanaka2018} 田中一郎 (2018). 『現代〇〇理論の展開』. 東京大学出版会.
+
+\bibitem{johnson2020} Johnson, M.K., Davis, L.M., \& Wilson, S.R. (2020). Large-scale empirical analysis of XX phenomenon. \textit{Journal of XX Studies}, 45(3), 123-145.
+
+\bibitem{sato2019} 佐藤花子 (2019). 「日本企業における〇〇の実態調査」. 『経営研究』, 70(4), 45-62.
+
+\bibitem{brown2021} Brown, P.L. (2021). Cross-cultural perspectives on organizational XX. \textit{International Management Review}, 18(2), 78-95.
+
+\bibitem{yamada2022} 山田太郎 (2022). 「〇〇理論の実証的検証：中小企業を対象として」. 『日本経営学会誌』, 48, 112-128.
+
+\bibitem{wilson2023} Wilson, R.T. (2023). Future directions in XX research: A systematic review. \textit{Annual Review of Management}, 49, 234-267.
+\end{thebibliography}
+
+\end{document}

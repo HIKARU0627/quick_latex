@@ -1,0 +1,76 @@
+\documentclass[12pt,a4paper]{ltjsarticle}
+
+% ===== 日本語フォント設定（LuaLaTeX用） =====
+\usepackage{luatexja-fontspec}
+
+% ===== 基本パッケージ =====
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{enumerate}
+\usepackage{fancyvrb}
+\usepackage{multicol}
+
+% ===== 定理環境の定義 =====
+\theoremstyle{definition}
+\newtheorem{definition}{定義}[section]
+
+% ===== 文書情報 =====
+\title{【授業名】第X回レポート}
+\author{
+    学籍番号: 12345678\\
+    氏名: 山田 太郎\\
+    提出日: \today
+}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+% ===== 概要 =====
+\begin{abstract}
+本レポートでは、〇〇について論じる。
+まず第1節で背景と目的を述べ、第2節で〇〇の理論について説明する。
+第3節では実際の例を示し、最後に第4節でまとめと今後の課題を述べる。
+\end{abstract}
+
+% ===== 本文 =====
+\section{はじめに}
+
+本レポートの目的は〇〇を明らかにすることである。
+この問題は〇〇において重要な意味を持つ。
+
+\section{理論}
+
+\subsection{基本概念}
+
+ここでは、〇〇の基本的な概念について説明する。
+
+\begin{definition}[〇〇の定義]
+$X$を〇〇とするとき、以下を満たすものを△△という：
+\begin{equation}
+    f(x) = \sum_{n=0}^{\infty} a_n x^n
+\end{equation}
+\end{definition}
+
+\section{まとめ}
+
+本レポートでは〇〇について検討した。
+その結果、以下のことが明らかになった：
+
+\begin{enumerate}
+    \item 〇〇は△△である
+    \item □□の条件下では〇〇が成立する
+    \item 今後の課題として〇〇が挙げられる
+\end{enumerate}
+
+% ===== 参考文献 =====
+\begin{thebibliography}{9}
+\bibitem{ref1} 著者名, 『書籍タイトル』, 出版社, 2024年.
+\bibitem{ref2} Author, A., ``Paper Title,'' \textit{Journal Name}, vol.1, pp.1--10, 2024.
+\end{thebibliography}
+
+\end{document}

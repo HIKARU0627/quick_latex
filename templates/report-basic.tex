@@ -1,0 +1,155 @@
+\documentclass[12pt,a4paper]{ltjsarticle}
+
+% ===== 共通スタイルパッケージの読み込み =====
+\usepackage[japanese,programming]{../common/university-style}
+
+% ===== 追加パッケージ =====
+\usepackage{enumerate}
+\usepackage{fancyvrb}
+\usepackage{multicol}
+
+% ===== 大学情報設定 =====
+\university{○○大学}
+\department{○○学部○○学科}
+\studentid{12345678}
+\supervisor{指導教員：○○ ○○ 教授}
+
+% ===== 文書情報 =====
+\title{【授業名】第X回レポート}
+\author{山田 太郎}
+\date{\today}
+
+\begin{document}
+
+% ===== タイトルページ =====
+\reportheader
+
+% ===== 概要 =====
+\begin{abstract}
+本レポートでは、〇〇について論じる。
+まず第1節で背景と目的を述べ、第2節で〇〇の理論について説明する。
+第3節では実際の例を示し、最後に第4節でまとめと今後の課題を述べる。
+\end{abstract}
+
+% ===== 本文 =====
+\section{はじめに}
+
+本レポートの目的は〇〇を明らかにすることである。
+この問題は〇〇において重要な意味を持つ\cite{ref1}。
+
+\section{理論}
+
+\subsection{基本概念}
+
+ここでは、〇〇の基本的な概念について説明する。
+
+\begin{definition}[〇〇の定義]
+$X$を〇〇とするとき、以下を満たすものを△△という：
+\begin{equation}
+    f(x) = \sum_{n=0}^{\infty} a_n x^n
+\end{equation}
+\end{definition}
+
+\subsection{主要な定理}
+
+\begin{theorem}[〇〇の定理]
+任意の$x \in \mathbb{R}$に対して、以下が成り立つ：
+\begin{equation}
+    \lim_{n \to \infty} \left(1 + \frac{1}{n}\right)^n = e
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+（証明をここに書く）
+\end{proof}
+
+\section{例題と考察}
+
+\begin{example}
+$f(x) = x^2 + 2x + 1$とするとき、$f(x) = 0$の解を求めよ。
+\end{example}
+
+\textbf{解答：}
+因数分解すると、
+\begin{align}
+    f(x) &= x^2 + 2x + 1\\
+         &= (x + 1)^2
+\end{align}
+よって、$x = -1$（重解）
+
+\section{プログラムによる実装}
+
+以下にPythonによる実装例を示す：
+
+\begin{lstlisting}[style=python, caption=計算プログラム]
+import numpy as np
+import matplotlib.pyplot as plt
+
+def calculate(x):
+    """計算を行う関数"""
+    return x**2 + 2*x + 1
+
+def plot_function(x_range=(-3, 1), num_points=100):
+    """関数をプロットする"""
+    x = np.linspace(*x_range, num_points)
+    y = calculate(x)
+    
+    plt.figure(figsize=(8, 6))
+    plt.plot(x, y, 'b-', linewidth=2, label='f(x) = x² + 2x + 1')
+    plt.axhline(y=0, color='k', linestyle='--', alpha=0.3)
+    plt.axvline(x=0, color='k', linestyle='--', alpha=0.3)
+    plt.grid(True, alpha=0.3)
+    plt.xlabel('x')
+    plt.ylabel('f(x)')
+    plt.title('二次関数のグラフ')
+    plt.legend()
+    plt.show()
+
+# メイン処理
+if __name__ == "__main__":
+    # 関数値の計算例
+    test_values = [-2, -1, 0, 1]
+    print("関数値の計算結果:")
+    for x in test_values:
+        y = calculate(x)
+        print(f"f({x}) = {y}")
+    
+    # グラフの描画
+    plot_function()
+\end{lstlisting}
+
+\section{まとめ}
+
+本レポートでは〇〇について検討した。
+その結果、以下のことが明らかになった：
+
+\begin{enumerate}
+    \item 〇〇は△△である
+    \item □□の条件下では〇〇が成立する
+    \item 今後の課題として〇〇が挙げられる
+\end{enumerate}
+
+% ===== 付録（必要に応じて） =====
+\section*{付録}
+\addcontentsline{toc}{section}{付録}
+
+\subsection*{A. 追加の計算結果}
+詳細な数値計算結果や補足データをここに記載する。
+
+\subsection*{B. プログラムの実行結果}
+\begin{Verbatim}[frame=single, fontsize=\small]
+関数値の計算結果:
+f(-2) = 1
+f(-1) = 0
+f(0) = 1
+f(1) = 4
+\end{Verbatim}
+
+% ===== 参考文献 =====
+\begin{thebibliography}{9}
+\bibitem{ref1} 著者名, 『書籍タイトル』, 出版社, 2024年.
+\bibitem{ref2} Author, A., ``Paper Title,'' \textit{Journal Name}, vol.1, pp.1--10, 2024.
+\bibitem{ref3} Smith, J., ``Mathematical Analysis Methods,'' Academic Press, 2023.
+\end{thebibliography}
+
+\end{document}

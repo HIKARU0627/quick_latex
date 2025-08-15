@@ -1,0 +1,492 @@
+% 物理実験レポート用テンプレート
+\documentclass[11pt,a4paper]{ltjsarticle}
+
+% パッケージの読み込み
+\usepackage{luatexja}
+\usepackage{luatexja-fontspec}
+\usepackage[margin=25mm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{siunitx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{circuitikz}
+\usepackage{tcolorbox}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{url}
+\usepackage{hyperref}
+
+% フォント設定
+\setmainfont{Noto Serif CJK JP}
+\setsansfont{Noto Sans CJK JP}
+\setmonofont{Noto Sans Mono CJK JP}
+
+% siunitxの設定（日本語対応）
+\sisetup{
+    inter-unit-product = \ensuremath{{}\cdot{}},
+    per-mode = symbol,
+    bracket-numbers = false,
+    separate-uncertainty = true,
+    multi-part-units = single,
+    list-final-separator = { および },
+    list-pair-separator = { および },
+    range-phrase = { から }
+}
+
+% 色の定義
+\definecolor{accentblue}{RGB}{52,152,219}
+\definecolor{accentgreen}{RGB}{46,204,113}
+\definecolor{accentorange}{RGB}{230,126,34}
+\definecolor{accentred}{RGB}{231,76,60}
+\definecolor{accentpurple}{RGB}{155,89,182}
+
+% tcolorboxのスタイル定義
+\newtcolorbox{objectivebox}[1][]{
+    colback=accentblue!10,
+    colframe=accentblue,
+    fonttitle=\bfseries,
+    title={実験目的},
+    #1
+}
+
+\newtcolorbox{methodbox}[1][]{
+    colback=accentgreen!10,
+    colframe=accentgreen,
+    fonttitle=\bfseries,
+    title={実験方法のポイント},
+    #1
+}
+
+\newtcolorbox{resultbox}[1][]{
+    colback=accentorange!10,
+    colframe=accentorange,
+    fonttitle=\bfseries,
+    title={重要な結果},
+    #1
+}
+
+\newtcolorbox{errorbox}[1][]{
+    colback=accentred!10,
+    colframe=accentred,
+    fonttitle=\bfseries,
+    title={誤差解析},
+    #1
+}
+
+\newtcolorbox{safetybox}[1][]{
+    colback=accentpurple!10,
+    colframe=accentpurple,
+    fonttitle=\bfseries,
+    title={安全上の注意},
+    #1
+}
+
+% 物理記号のショートカット
+\newcommand{\measured}[3]{\SI{#1 \pm #2}{#3}}
+\newcommand{\calc}[2]{\SI{#1}{#2}}
+\newcommand{\error}[1]{\Delta #1}
+\newcommand{\relerror}[1]{\frac{\error{#1}}{#1}}
+
+% 実験データ用のマクロ
+\newcommand{\expdata}[4]{
+    \SI{#1}{\nothing} & \SI{#2}{\nothing} & \SI{#3}{\nothing} & \SI{#4}{\nothing} \\
+}
+
+% ヘッダー・フッター設定
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{物理実験レポート}
+\fancyhead[R]{\today}
+\fancyfoot[C]{\thepage}
+
+% ハイパーリンク設定
+\hypersetup{
+    colorlinks=true,
+    linkcolor=accentblue,
+    urlcolor=accentblue,
+    citecolor=accentblue
+}
+
+% タイトル情報
+\title{\Huge\textbf{物理実験：実験題目}}
+\author{
+    学籍番号：XXXXXXXX \\
+    氏名：山田 太郎 \\
+    グループ：X班 \\
+    実験日：20XX年X月X日 \\
+    提出日：20XX年X月X日
+}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+\clearpage
+
+\section{実験目的}
+
+\begin{objectivebox}
+本実験の目的：
+\begin{enumerate}
+    \item 〇〇の物理現象を実際に観測し、理論値と比較する
+    \item △△の測定技術を習得し、精密測定の方法を学ぶ
+    \item 実験データの統計処理と誤差解析の手法を身につける
+\end{enumerate}
+\end{objectivebox}
+
+物理学において、〇〇は重要な現象の一つである。本実験では、この現象を定量的に測定し、理論的予測との比較を行う。特に、以下の物理量の関係式：
+
+\begin{equation}
+    F = ma
+\label{eq:newton2}
+\end{equation}
+
+を実験的に検証することを主目的とする。
+
+\section{理論的背景}
+
+\subsection{基本理論}
+
+ニュートンの第二法則によれば、物体に作用する力$F$と加速度$a$の間には比例関係が成り立つ：
+
+\begin{equation}
+    \vec{F} = m\vec{a}
+\end{equation}
+
+ここで、$m$は物体の質量（慣性質量）である。
+
+\subsection{期待される結果}
+
+理論計算により、実験条件下では以下の値が期待される：
+
+\begin{align}
+    a_{\text{理論}} &= \calc{9.81}{m/s^2} \\
+    F_{\text{理論}} &= m \times a_{\text{理論}}
+\end{align}
+
+\section{実験装置・器具}
+
+\begin{table}[htbp]
+    \centering
+    \caption{使用した実験器具一覧}
+    \label{tab:apparatus}
+    \begin{tabular}{lll}
+        \toprule
+        器具名 & 型番・仕様 & 測定範囲・精度 \\
+        \midrule
+        電子天秤 & XYZ-1000 & \SI{0}{\gram} -- \SI{1000}{\gram}, \SI{\pm 0.1}{\gram} \\
+        ストップウォッチ & ABC-Timer & \SI{0}{\second} -- \SI{999}{\second}, \SI{\pm 0.01}{\second} \\
+        メジャー & 金属製 & \SI{0}{\meter} -- \SI{2}{\meter}, \SI{\pm 1}{\milli\meter} \\
+        力センサー & Force-Pro & \SI{0}{\newton} -- \SI{50}{\newton}, \SI{\pm 0.1}{\newton} \\
+        データロガー & Logger-X & サンプリング周波数 \SI{1000}{\hertz} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[scale=1.2]
+        % 実験装置の概略図
+        \draw[thick] (0,0) rectangle (8,4);
+        \draw[thick] (1,3) rectangle (3,3.5);
+        \node at (2,3.25) {重り};
+        \draw[thick] (2,3) -- (2,1);
+        \draw[thick] (1.8,1) rectangle (2.2,0.8);
+        \node at (2,0.6) {センサー};
+        
+        % 寸法線
+        \draw[<->] (0,-0.5) -- (8,-0.5);
+        \node at (4,-0.8) {\SI{80}{\centi\meter}};
+        \draw[<->] (-0.5,0) -- (-0.5,4);
+        \node at (-0.8,2) {\SI{40}{\centi\meter}};
+        
+        \node at (4,4.5) {実験装置概略図};
+    \end{tikzpicture}
+    \caption{実験装置の概略図}
+    \label{fig:apparatus}
+\end{figure}
+
+\section{実験方法}
+
+\begin{methodbox}
+実験手順の要点：
+\begin{enumerate}
+    \item 装置の校正と初期設定
+    \item 測定条件の設定と確認
+    \item データ収集の自動化
+    \item 複数回測定による統計的処理
+\end{enumerate}
+\end{methodbox}
+
+\subsection{実験手順}
+
+\begin{enumerate}
+    \item \textbf{装置設定}
+    \begin{itemize}
+        \item 力センサーをゼロ点調整する
+        \item データロガーのサンプリング周波数を\SI{100}{\hertz}に設定
+        \item 実験環境の温度・湿度を記録
+    \end{itemize}
+    
+    \item \textbf{質量測定}
+    \begin{itemize}
+        \item 各試料の質量を電子天秤で3回測定
+        \item 平均値と標準偏差を計算
+    \end{itemize}
+    
+    \item \textbf{力測定}
+    \begin{itemize}
+        \item 各質量に対して力を10回測定
+        \item 測定間隔は\SI{30}{\second}とする
+    \end{itemize}
+    
+    \item \textbf{データ解析}
+    \begin{itemize}
+        \item 外れ値の除去（シャウヴェネ基準）
+        \item 最小二乗法による直線フィッティング
+    \end{itemize}
+\end{enumerate}
+
+\begin{safetybox}
+\textbf{安全上の注意事項}
+\begin{itemize}
+    \item 重りの落下に注意し、足元に十分なスペースを確保する
+    \item 電子機器は湿気を避け、適切に接地する
+    \item 測定中は装置に振動を与えないよう注意する
+\end{itemize}
+\end{safetybox}
+
+\section{実験結果}
+
+\subsection{質量測定結果}
+
+\begin{table}[htbp]
+    \centering
+    \caption{試料の質量測定結果}
+    \label{tab:mass}
+    \begin{tabular}{ccccc}
+        \toprule
+        試料番号 & 測定1 (\si{\gram}) & 測定2 (\si{\gram}) & 測定3 (\si{\gram}) & 平均値 (\si{\gram}) \\
+        \midrule
+        1 & 100.2 & 100.1 & 100.3 & $\measured{100.2}{0.1}{}$ \\
+        2 & 200.1 & 200.0 & 200.2 & $\measured{200.1}{0.1}{}$ \\
+        3 & 300.3 & 300.1 & 300.2 & $\measured{300.2}{0.1}{}$ \\
+        4 & 400.0 & 400.1 & 399.9 & $\measured{400.0}{0.1}{}$ \\
+        5 & 500.2 & 500.3 & 500.1 & $\measured{500.2}{0.1}{}$ \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsection{力測定結果}
+
+\begin{table}[htbp]
+    \centering
+    \caption{重力による力の測定結果}
+    \label{tab:force}
+    \begin{tabular}{cccc}
+        \toprule
+        質量 (\si{\gram}) & 測定力 (\si{\newton}) & 理論力 (\si{\newton}) & 相対誤差 (\%) \\
+        \midrule
+        $\measured{100.2}{0.1}{}$ & $\measured{0.982}{0.005}{}$ & 0.983 & 0.1 \\
+        $\measured{200.1}{0.1}{}$ & $\measured{1.963}{0.008}{}$ & 1.964 & 0.05 \\
+        $\measured{300.2}{0.1}{}$ & $\measured{2.944}{0.012}{}$ & 2.946 & 0.07 \\
+        $\measured{400.0}{0.1}{}$ & $\measured{3.924}{0.015}{}$ & 3.925 & 0.03 \\
+        $\measured{500.2}{0.1}{}$ & $\measured{4.907}{0.018}{}$ & 4.906 & 0.02 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{resultbox}
+主要な実験結果：
+\begin{itemize}
+    \item 測定された重力加速度：$g = \measured{9.82}{0.02}{m/s^2}$
+    \item 理論値との相対誤差：0.1\%以下
+    \item 相関係数：$r = 0.9998$
+\end{itemize}
+\end{resultbox}
+
+\subsection{グラフ表示}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            xlabel={質量 (\si{\gram})},
+            ylabel={力 (\si{\newton})},
+            grid=major,
+            legend pos=south east,
+            width=12cm,
+            height=8cm
+        ]
+        \addplot[blue, mark=*] coordinates {
+            (100.2, 0.982)
+            (200.1, 1.963)
+            (300.2, 2.944)
+            (400.0, 3.924)
+            (500.2, 4.907)
+        };
+        \addplot[red, dashed, domain=50:550] {0.00981*x};
+        \legend{実験値, 理論値（$F = mg$）}
+        \end{axis}
+    \end{tikzpicture}
+    \caption{質量と重力の関係}
+    \label{fig:force-mass}
+\end{figure}
+
+\section{誤差解析}
+
+\subsection{統計誤差}
+
+各測定値の統計誤差は標準偏差で評価した：
+
+\begin{equation}
+    \sigma = \sqrt{\frac{1}{n-1}\sum_{i=1}^{n}(x_i - \bar{x})^2}
+\end{equation}
+
+\subsection{系統誤差}
+
+考えられる系統誤差の要因：
+
+\begin{errorbox}
+\textbf{主要な誤差要因}
+\begin{enumerate}
+    \item \textbf{器具誤差}：センサーの校正精度（$\pm$0.1\%）
+    \item \textbf{環境要因}：気圧変化による浮力効果（$\pm$0.01\%）
+    \item \textbf{操作誤差}：測定タイミングのばらつき（$\pm$0.05\%）
+\end{enumerate}
+\end{errorbox}
+
+\subsection{総合誤差}
+
+統計誤差と系統誤差を合成した総合誤差：
+
+\begin{equation}
+    \Delta F_{\text{total}} = \sqrt{(\Delta F_{\text{統計}})^2 + (\Delta F_{\text{系統}})^2}
+\end{equation}
+
+\begin{table}[htbp]
+    \centering
+    \caption{誤差解析結果}
+    \label{tab:error}
+    \begin{tabular}{lcc}
+        \toprule
+        誤差の種類 & 値 & 相対誤差 (\%) \\
+        \midrule
+        統計誤差 & \SI{\pm 0.003}{\newton} & 0.08 \\
+        器具誤差 & \SI{\pm 0.004}{\newton} & 0.10 \\
+        環境誤差 & \SI{\pm 0.0004}{\newton} & 0.01 \\
+        総合誤差 & \SI{\pm 0.005}{\newton} & 0.13 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\section{考察}
+
+\subsection{結果の妥当性}
+
+実験により得られた重力加速度$g = \measured{9.82}{0.02}{m/s^2}$は、理論値$\calc{9.81}{m/s^2}$と良好な一致を示している。相対誤差が0.1\%以下であることから、本実験の精度は十分高いと判断される。
+
+\subsection{誤差要因の検討}
+
+最大の誤差要因は器具の校正精度であった。今後の改善点として以下が挙げられる：
+
+\begin{enumerate}
+    \item より高精度なセンサーの使用
+    \item 環境条件（温度、湿度、気圧）の詳細な記録と補正
+    \item 測定回数の増加による統計精度の向上
+\end{enumerate}
+
+\subsection{物理的意味}
+
+ニュートンの第二法則$F = ma$が実験的に検証されたことで、質量と力の関係が線形であることが確認された。この結果は、慣性質量と重力質量の等価性を示唆しており、一般相対性理論の等価原理とも関連している。
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            xlabel={測定回数},
+            ylabel={重力加速度 (\si{m/s^2})},
+            grid=major,
+            legend pos=north east,
+            width=12cm,
+            height=8cm,
+            ymin=9.75,
+            ymax=9.85
+        ]
+        \addplot[blue, mark=*] coordinates {
+            (1, 9.83) (2, 9.81) (3, 9.82) (4, 9.81) (5, 9.82)
+            (6, 9.83) (7, 9.81) (8, 9.82) (9, 9.81) (10, 9.82)
+        };
+        \addplot[red, dashed] coordinates {(0, 9.81) (11, 9.81)};
+        \legend{測定値, 理論値}
+        \end{axis}
+    \end{tikzpicture}
+    \caption{重力加速度の測定値の分布}
+    \label{fig:g-distribution}
+\end{figure}
+
+\section{結論}
+
+本実験では、ニュートンの第二法則を実験的に検証し、以下の結論を得た：
+
+\begin{enumerate}
+    \item 重力による力と質量の関係は高い精度で線形関係を示した
+    \item 測定された重力加速度は理論値と0.1\%以内で一致した
+    \item 実験誤差の主要因は器具の校正精度であることが判明した
+    \item 統計処理により、測定精度を定量的に評価することができた
+\end{enumerate}
+
+これらの結果は、古典力学の基本法則が実験的に成立することを確認するものである。また、精密測定技術と誤差解析の重要性を理解することができた。
+
+\section{参考文献}
+
+\begin{thebibliography}{99}
+\bibitem{halliday} D. Halliday, R. Resnick, J. Walker, \textit{Fundamentals of Physics}, 10th Edition, Wiley, 2013.
+\bibitem{taylor} J. R. Taylor, \textit{An Introduction to Error Analysis}, 2nd Edition, University Science Books, 1997.
+\bibitem{bevington} P. R. Bevington, D. K. Robinson, \textit{Data Reduction and Error Analysis for the Physical Sciences}, 3rd Edition, McGraw-Hill, 2003.
+\bibitem{japanese1} 物理学実験研究会編, 『物理学実験』, 学術図書出版社, 2018.
+\bibitem{japanese2} 中村純, 『誤差論と測定』, 裳華房, 2015.
+\end{thebibliography}
+
+\appendix
+
+\section{実験データ詳細}
+
+\subsection{生データ}
+
+表\ref{tab:rawdata}に、すべての測定生データを示す。
+
+\begin{table}[htbp]
+    \centering
+    \caption{力測定の生データ（抜粋）}
+    \label{tab:rawdata}
+    \begin{tabular}{cccccc}
+        \toprule
+        測定No. & 試料1 (\si{\newton}) & 試料2 (\si{\newton}) & 試料3 (\si{\newton}) & 試料4 (\si{\newton}) & 試料5 (\si{\newton}) \\
+        \midrule
+        1 & 0.984 & 1.965 & 2.946 & 3.926 & 4.909 \\
+        2 & 0.981 & 1.962 & 2.943 & 3.923 & 4.906 \\
+        3 & 0.983 & 1.964 & 2.945 & 3.925 & 4.908 \\
+        $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ \\
+        10 & 0.982 & 1.963 & 2.944 & 3.924 & 4.907 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsection{統計処理詳細}
+
+最小二乗法による直線フィッティングの詳細計算結果：
+
+\begin{align}
+    傾き: a &= \calc{9.82 \pm 0.02}{(m/s^2)/(kg)} \\
+    切片: b &= \calc{0.001 \pm 0.003}{m/s^2} \\
+    相関係数: r &= 0.9998
+\end{align}
+
+\end{document}

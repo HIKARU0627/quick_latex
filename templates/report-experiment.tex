@@ -1,0 +1,245 @@
+\documentclass[12pt,a4paper]{ltjsarticle}
+
+% ===== 共通スタイルパッケージの読み込み =====
+\usepackage[japanese,experiment]{../../../common/university-style}
+
+% ===== 追加パッケージ =====
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{adjustbox}
+
+% ===== 大学情報設定 =====
+\university{○○大学}
+\department{○○学部○○学科}
+\studentid{12345678}
+\supervisor{担当教員：○○ ○○ 教授}
+
+% ===== 文書情報 =====
+\title{【実験名】実験レポート}
+\author{山田 太郎}
+\date{\today}
+
+% ===== 実験固有情報 =====
+\newcommand{\labpartner}{鈴木 花子}
+\newcommand{\experimentdate}{2024年X月X日}
+\newcommand{\experimentlocation}{○○実験室}
+
+\begin{document}
+
+% ===== タイトルページ =====
+\reportheader
+
+% ===== 実験情報 =====
+\begin{center}
+\begin{tabular}{ll}
+共同実験者: & \labpartner \\
+実験実施日: & \experimentdate \\
+実験場所: & \experimentlocation \\
+\end{tabular}
+\end{center}
+\vspace{1cm}
+
+% ===== 概要 =====
+\begin{abstract}
+本実験では〇〇の測定を行い、理論値との比較を行った。
+実験の結果、測定値は$\measured{9.81}{0.05}{\meter\per\second\squared}$となり、
+理論値$\theoretical{9.80665}{\meter\per\second\squared}$とよく一致した。
+誤差の要因として〇〇が考えられる。
+\end{abstract}
+
+% ===== 本文 =====
+\section{目的}
+
+本実験の目的は以下の通りである：
+\begin{enumerate}
+    \item 〇〇を測定し、その特性を理解する
+    \item 理論値と実験値を比較し、誤差要因を考察する
+    \item 測定技術を習得する
+\end{enumerate}
+
+\section{理論}
+
+\subsection{基本原理}
+
+〇〇の原理は以下の式で表される：
+
+\begin{equation}
+    F = ma = mg - kv
+    \label{eq:basic}
+\end{equation}
+
+ここで、$m$は質量[$\si{\kilogram}$]、$a$は加速度[$\si{\meter\per\second\squared}$]、
+$g$は重力加速度[$\si{\meter\per\second\squared}$]、$k$は抵抗係数[$\si{\kilogram\per\second}$]、
+$v$は速度[$\si{\meter\per\second}$]である。
+
+\subsection{理論値の導出}
+
+式(\ref{eq:basic})より、終端速度$v_t$は：
+
+\begin{equation}
+    v_t = \frac{mg}{k}
+    \label{eq:terminal}
+\end{equation}
+
+\section{実験方法}
+
+\subsection{実験装置}
+
+使用した装置を表\ref{tab:equipment}に示す。
+
+\begin{table}[H]
+    \centering
+    \caption{使用機器一覧}
+    \label{tab:equipment}
+    \begin{tabular}{lll}
+        \toprule
+        機器名 & 型番 & 精度 \\
+        \midrule
+        電子天秤 & XYZ-123 & $\pm\SI{0.01}{\gram}$ \\
+        ストップウォッチ & ABC-456 & $\pm\SI{0.01}{\second}$ \\
+        定規 & --- & $\pm\SI{1}{\milli\meter}$ \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsection{実験手順}
+
+\begin{enumerate}
+    \item 装置を図\ref{fig:setup}のように組み立てる
+    \item 質量$m$を電子天秤で測定する
+    \item 高さ$h$から物体を落下させる
+    \item 落下時間$t$をストップウォッチで測定する
+    \item 手順3-4を10回繰り返す
+\end{enumerate}
+
+% 図を挿入する場合
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.6\textwidth]{figures/setup.png}
+%     \caption{実験装置の概略図}
+%     \label{fig:setup}
+% \end{figure}
+
+\section{実験結果}
+
+\subsection{測定データ}
+
+測定結果を表\ref{tab:results}に示す。
+
+\begin{table}[H]
+    \centering
+    \caption{落下時間の測定結果}
+    \label{tab:results}
+    \begin{tabular}{cS[table-format=1.2]S[table-format=1.2]}
+        \toprule
+        測定回数 & {時間 [$\si{\second}$]} & {速度 [$\si{\meter\per\second}$]} \\
+        \midrule
+        1  & 2.34 & 4.27 \\
+        2  & 2.31 & 4.33 \\
+        3  & 2.35 & 4.26 \\
+        4  & 2.33 & 4.29 \\
+        5  & 2.32 & 4.31 \\
+        6  & 2.34 & 4.27 \\
+        7  & 2.33 & 4.29 \\
+        8  & 2.35 & 4.26 \\
+        9  & 2.31 & 4.33 \\
+        10 & 2.32 & 4.31 \\
+        \midrule
+        平均 & 2.33 & 4.29 \\
+        標準偏差 & 0.015 & 0.028 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsection{データ解析}
+
+平均値と標準誤差：
+\begin{equation}
+    \bar{t} = \SI{2.33 \pm 0.005}{\second}
+\end{equation}
+
+ここで、標準誤差は$\sigma/\sqrt{n} = 0.015/\sqrt{10} = 0.005$である。
+
+\subsection{グラフ}
+
+% PGFPlotsを使用したグラフの例
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            xlabel={時間 [$\si{\second}$]},
+            ylabel={距離 [$\si{\meter}$]},
+            grid=major,
+            width=10cm,
+            height=7cm,
+        ]
+        \addplot[
+            color=blue,
+            mark=o,
+            only marks,
+            error bars/.cd,
+            y dir=both,
+            y explicit,
+        ] coordinates {
+            (0,0) +- (0,0.1)
+            (1,4.9) +- (0,0.2)
+            (2,19.6) +- (0,0.3)
+            (3,44.1) +- (0,0.4)
+        };
+        \addplot[
+            color=red,
+            domain=0:3,
+        ] {4.9*x^2};
+        \legend{実験値, 理論値}
+        \end{axis}
+    \end{tikzpicture}
+    \caption{落下距離と時間の関係}
+    \label{fig:graph}
+\end{figure}
+
+\section{考察}
+
+\subsection{誤差の評価}
+
+理論値との相対誤差は：
+\begin{equation}
+    \text{相対誤差} = \frac{|実験値 - 理論値|}{理論値} \times 100 = 0.3\%
+\end{equation}
+
+この誤差は十分小さく、実験は成功したと言える。
+
+\subsection{誤差要因}
+
+考えられる誤差要因：
+\begin{enumerate}
+    \item 空気抵抗の影響
+    \item 測定者の反応時間（約$\SI{0.2}{\second}$）
+    \item 装置の振動
+\end{enumerate}
+
+\subsection{改善点}
+
+\begin{itemize}
+    \item 光電センサーを用いた自動測定
+    \item 真空中での実験
+    \item 測定回数の増加
+\end{itemize}
+
+\section{結論}
+
+本実験により、〇〇を測定し、理論値とよく一致する結果を得た。
+測定値は$\SI{9.81 \pm 0.05}{\meter\per\second\squared}$であり、
+理論値$\SI{9.80665}{\meter\per\second\squared}$との相対誤差は0.3\%であった。
+
+今後の課題として、より精密な測定装置を用いることで、
+さらに高精度な測定が可能になると考えられる。
+
+\section{参考文献}
+
+\begin{thebibliography}{9}
+\bibitem{ref1} 物理学実験指導書, ○○大学物理学科, 2024.
+\bibitem{ref2} 力学の教科書, 著者名, 出版社, 2023.
+\end{thebibliography}
+
+\end{document}

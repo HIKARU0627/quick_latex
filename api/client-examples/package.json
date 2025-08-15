@@ -1,0 +1,29 @@
+{
+  "name": "university-latex-api-client",
+  "version": "1.0.0",
+  "description": "University LaTeX API client examples",
+  "main": "javascript_client.js",
+  "scripts": {
+    "start": "node javascript_client.js",
+    "demo": "node javascript_client.js demo",
+    "basic": "node javascript_client.js basic",
+    "batch": "node javascript_client.js batch",
+    "auto": "node javascript_client.js auto"
+  },
+  "keywords": [
+    "latex",
+    "api",
+    "client",
+    "university",
+    "document",
+    "compilation"
+  ],
+  "author": "University LaTeX Project",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

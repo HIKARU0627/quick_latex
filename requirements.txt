@@ -1,0 +1,7 @@
+# University LaTeX API Server Dependencies
+flask==3.0.0
+flask-cors==4.0.0
+werkzeug==3.0.1
+
+# Client example dependencies
+requests>=2.25.0

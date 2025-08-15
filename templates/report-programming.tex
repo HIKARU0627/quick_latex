@@ -1,0 +1,433 @@
+\documentclass[12pt,a4paper]{ltjsarticle}
+
+% ===== 日本語フォント設定（LuaLaTeX用） =====
+\usepackage{luatexja-fontspec}
+% \setmainjfont{Noto Serif CJK JP}  % 必要に応じて設定
+
+% ===== パッケージ =====
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{fancyvrb}
+\usepackage{algorithm2e}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{url}
+
+% ===== ページ設定 =====
+\setlength{\textwidth}{16cm}
+\setlength{\textheight}{23cm}
+\setlength{\oddsidemargin}{0cm}
+\setlength{\evensidemargin}{0cm}
+\setlength{\topmargin}{-0.5cm}
+
+% ===== 色の定義 =====
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+% ===== Python用コード設定 =====
+\lstdefinestyle{python}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=4,
+    language=Python
+}
+
+% ===== Java用コード設定 =====
+\lstdefinestyle{java}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{blue},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{red},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=4,
+    language=Java
+}
+
+% ===== C/C++用コード設定 =====
+\lstdefinestyle{cpp}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{blue},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{red},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=4,
+    language=C++
+}
+
+% ===== アルゴリズム設定 =====
+\SetAlgoLined
+\SetKwInOut{Input}{入力}
+\SetKwInOut{Output}{出力}
+
+% ===== 文書情報 =====
+\title{【授業名】\\プログラミング課題レポート}
+\author{
+    学籍番号: 12345678\\
+    氏名: 山田 太郎\\
+    提出日: \today
+}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+% ===== 概要 =====
+\begin{abstract}
+本レポートでは、〇〇の実装について報告する。
+課題要求を分析し、アルゴリズムを設計・実装した。
+実装した〇〇アルゴリズムの時間計算量は$O(n)$であり、
+テストケースすべてで期待通りの動作を確認した。
+\end{abstract}
+
+% ===== 本文 =====
+\section{課題内容}
+
+\subsection{問題設定}
+与えられた課題は以下の通りである：
+
+\begin{quote}
+〇〇を実装せよ。入力として〇〇が与えられ、出力として〇〇を返すプログラムを作成すること。
+\end{quote}
+
+\subsection{要求仕様}
+\begin{itemize}
+    \item 入力：〇〇（例：整数配列、文字列など）
+    \item 出力：〇〇（例：ソート済み配列、検索結果など）
+    \item 制約：〇〇（例：配列サイズは1000以下）
+    \item 評価基準：正確性、効率性、可読性
+\end{itemize}
+
+\section{アルゴリズム設計}
+
+\subsection{基本方針}
+問題を解決するため、以下のアプローチを採用した：
+
+\begin{enumerate}
+    \item 問題を〇〇に分解
+    \item 〇〇アルゴリズムを適用
+    \item 効率化のため〇〇を工夫
+\end{enumerate}
+
+\subsection{アルゴリズム}
+実装したアルゴリズムを擬似コードで示す：
+
+\begin{algorithm}[H]
+\caption{〇〇アルゴリズム}
+\Input{配列 $A[1..n]$}
+\Output{処理結果}
+\BlankLine
+初期化処理\;
+\For{$i \leftarrow 1$ \KwTo $n$}{
+    \If{条件}{
+        処理A\;
+    }
+    \Else{
+        処理B\;
+    }
+}
+結果を返す\;
+\end{algorithm}
+
+\subsection{計算量解析}
+\begin{itemize}
+    \item \textbf{時間計算量}：$O(n \log n)$
+    \begin{itemize}
+        \item 主ループ：$O(n)$
+        \item 内部処理：$O(\log n)$
+    \end{itemize}
+    \item \textbf{空間計算量}：$O(n)$
+    \begin{itemize}
+        \item 配列格納：$O(n)$
+        \item 作業領域：$O(1)$
+    \end{itemize}
+\end{itemize}
+
+\section{実装}
+
+\subsection{メインプログラム}
+以下にPythonによる実装を示す：
+
+\begin{lstlisting}[style=python, caption=メインプログラム (main.py)]
+def solve_problem(input_data):
+    """
+    問題を解決するメイン関数
+    
+    Args:
+        input_data: 入力データ
+    
+    Returns:
+        解決結果
+    """
+    # データの前処理
+    processed_data = preprocess(input_data)
+    
+    # メインアルゴリズムの実行
+    result = main_algorithm(processed_data)
+    
+    # 後処理
+    final_result = postprocess(result)
+    
+    return final_result
+
+def preprocess(data):
+    """データの前処理"""
+    # 入力データの検証
+    if not validate_input(data):
+        raise ValueError("Invalid input data")
+    
+    # 正規化処理
+    normalized = normalize_data(data)
+    return normalized
+
+def main_algorithm(data):
+    """メインアルゴリズム"""
+    result = []
+    
+    for item in data:
+        # 処理ロジック
+        processed_item = process_item(item)
+        result.append(processed_item)
+    
+    return result
+
+def process_item(item):
+    """個別アイテムの処理"""
+    # 具体的な処理内容
+    return item * 2  # 例：2倍にする
+
+if __name__ == "__main__":
+    # テストデータ
+    test_input = [1, 2, 3, 4, 5]
+    result = solve_problem(test_input)
+    print(f"Result: {result}")
+\end{lstlisting}
+
+\subsection{ヘルパー関数}
+補助的な関数の実装：
+
+\begin{lstlisting}[style=python, caption=ヘルパー関数 (utils.py)]
+def validate_input(data):
+    """
+    入力データの妥当性検証
+    """
+    if not isinstance(data, list):
+        return False
+    if len(data) == 0:
+        return False
+    return all(isinstance(item, (int, float)) for item in data)
+
+def normalize_data(data):
+    """
+    データの正規化
+    """
+    if not data:
+        return []
+    
+    # 平均値による正規化
+    mean_val = sum(data) / len(data)
+    return [(x - mean_val) for x in data]
+
+def format_output(result):
+    """
+    出力フォーマット
+    """
+    return f"処理結果: {result}"
+\end{lstlisting}
+
+\section{テスト}
+
+\subsection{テストケース設計}
+以下のテストケースを設計・実行した：
+
+\begin{table}[H]
+    \centering
+    \caption{テストケース一覧}
+    \begin{tabular}{clll}
+        \toprule
+        ID & 入力 & 期待出力 & 結果 \\
+        \midrule
+        TC1 & [1, 2, 3] & [2, 4, 6] & ✓ PASS \\
+        TC2 & [] & [] & ✓ PASS \\
+        TC3 & [0] & [0] & ✓ PASS \\
+        TC4 & [−1, 0, 1] & [−2, 0, 2] & ✓ PASS \\
+        TC5 & 大規模データ（n=1000） & 期待結果 & ✓ PASS \\
+        \bottomrule
+    \end{tabular}
+    \label{tab:testcases}
+\end{table}
+
+\subsection{テストコード}
+単体テストの実装：
+
+\begin{lstlisting}[style=python, caption=テストコード (test.py)]
+import unittest
+from main import solve_problem, validate_input
+
+class TestSolution(unittest.TestCase):
+    
+    def test_basic_case(self):
+        """基本的なテストケース"""
+        input_data = [1, 2, 3]
+        expected = [2, 4, 6]
+        result = solve_problem(input_data)
+        self.assertEqual(result, expected)
+    
+    def test_empty_input(self):
+        """空入力のテスト"""
+        input_data = []
+        expected = []
+        result = solve_problem(input_data)
+        self.assertEqual(result, expected)
+    
+    def test_single_element(self):
+        """単一要素のテスト"""
+        input_data = [5]
+        expected = [10]
+        result = solve_problem(input_data)
+        self.assertEqual(result, expected)
+    
+    def test_validation(self):
+        """入力検証のテスト"""
+        self.assertTrue(validate_input([1, 2, 3]))
+        self.assertFalse(validate_input("invalid"))
+        self.assertFalse(validate_input(None))
+
+if __name__ == '__main__':
+    unittest.main()
+\end{lstlisting}
+
+\section{実行結果}
+
+\subsection{出力例}
+プログラムの実行結果を以下に示す：
+
+\begin{Verbatim}[frame=single, fontsize=\small]
+$ python main.py
+入力: [1, 2, 3, 4, 5]
+処理開始...
+前処理完了
+アルゴリズム実行中...
+後処理完了
+Result: [2, 4, 6, 8, 10]
+実行時間: 0.001秒
+\end{Verbatim}
+
+\subsection{性能測定}
+様々なデータサイズでの性能測定結果：
+
+\begin{table}[H]
+    \centering
+    \caption{性能測定結果}
+    \begin{tabular}{rrr}
+        \toprule
+        データサイズ & 実行時間 (秒) & メモリ使用量 (MB) \\
+        \midrule
+        100 & 0.001 & 1.2 \\
+        1,000 & 0.010 & 2.5 \\
+        10,000 & 0.098 & 12.3 \\
+        100,000 & 0.987 & 85.4 \\
+        \bottomrule
+    \end{tabular}
+    \label{tab:performance}
+\end{table}
+
+\section{考察}
+
+\subsection{アルゴリズムの評価}
+実装したアルゴリズムについて以下の点で評価できる：
+
+\begin{itemize}
+    \item \textbf{正確性}：全テストケースで期待通りの結果
+    \item \textbf{効率性}：理論計算量$O(n \log n)$を達成
+    \item \textbf{可読性}：関数分割により理解しやすい構造
+\end{itemize}
+
+\subsection{改善点}
+今後の改善可能な点：
+
+\begin{enumerate}
+    \item エラーハンドリングの強化
+    \item より大規模データへの対応
+    \item 並列処理による高速化
+\end{enumerate}
+
+\subsection{学んだこと}
+本課題を通じて学んだこと：
+
+\begin{itemize}
+    \item アルゴリズム設計の重要性
+    \item テスト駆動開発の有効性
+    \item 計算量解析の実用性
+\end{itemize}
+
+\section{結論}
+
+本レポートでは〇〇の実装を行い、要求仕様を満たすプログラムを作成した。
+実装したアルゴリズムは効率的で正確であり、すべてのテストケースをパスした。
+
+今後は実際のアプリケーションでの適用を検討し、
+さらなる最適化を進めていきたい。
+
+% ===== 付録 =====
+\section*{付録}
+
+\subsection*{A. 完全なソースコード}
+完全なソースコードは以下のリポジトリで公開している：
+\url{https://github.com/username/project}
+
+\subsection*{B. 実行環境}
+\begin{itemize}
+    \item OS: Ubuntu 22.04 LTS
+    \item Python: 3.9.7
+    \item メモリ: 16GB RAM
+    \item CPU: Intel Core i7-9750H
+\end{itemize}
+
+% ===== 参考文献 =====
+\begin{thebibliography}{9}
+\bibitem{algo} T.H. Cormen et al., ``Introduction to Algorithms,'' MIT Press, 2009.
+\bibitem{python} M. Lutz, ``Learning Python,'' O'Reilly Media, 2013.
+\bibitem{testing} K. Beck, ``Test Driven Development,'' Addison-Wesley, 2003.
+\end{thebibliography}
+
+\end{document}

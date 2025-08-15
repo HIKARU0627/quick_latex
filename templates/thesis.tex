@@ -1,0 +1,544 @@
+\documentclass[12pt,a4paper,twoside]{ltjsbook}
+
+% ===== 日本語フォント設定（LuaLaTeX用） =====
+\usepackage{luatexja-fontspec}
+% \setmainjfont{Noto Serif CJK JP}  % 必要に応じて設定
+
+% ===== パッケージ =====
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{algorithm2e}
+\usepackage{float}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{tocloft}
+\usepackage{natbib}
+
+% ===== ページレイアウト =====
+\setlength{\textwidth}{15cm}
+\setlength{\textheight}{22cm}
+\setlength{\oddsidemargin}{1cm}
+\setlength{\evensidemargin}{0cm}
+\setlength{\topmargin}{0cm}
+\setlength{\headheight}{15pt}
+\setlength{\headsep}{10pt}
+
+% ===== ヘッダー・フッター設定 =====
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{\leftmark}
+\fancyhead[RO]{\rightmark}
+\fancyfoot[C]{\thepage}
+
+% 章の開始ページのスタイル
+\fancypagestyle{plain}{%
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% ===== 章・節のスタイル設定 =====
+\titleformat{\chapter}[display]
+    {\normalfont\huge\bfseries}
+    {第\thechapter 章}
+    {10pt}
+    {\Huge}
+
+% ===== 目次のスタイル =====
+\renewcommand{\cftchapfont}{\bfseries}
+\renewcommand{\cftsecfont}{\normalfont}
+
+% ===== コードリスティング設定 =====
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=4
+}
+\lstset{style=mystyle}
+
+% ===== 定理環境 =====
+\theoremstyle{definition}
+\newtheorem{definition}{定義}[chapter]
+\newtheorem{theorem}{定理}[chapter]
+\newtheorem{lemma}{補題}[chapter]
+\newtheorem{corollary}{系}[chapter]
+\newtheorem{proposition}{命題}[chapter]
+\newtheorem{example}{例}[chapter]
+
+\theoremstyle{remark}
+\newtheorem{remark}{注意}[chapter]
+
+% ===== ハイパーリンク設定 =====
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    citecolor=blue,
+    bookmarks=true,
+    bookmarksnumbered=true,
+    pdfpagemode=UseOutlines
+}
+
+% ===== 文書情報 =====
+\title{論文タイトル\\〜サブタイトル〜}
+\author{山田 太郎}
+\date{令和6年3月}
+
+% 大学・研究科情報（表紙用）
+\newcommand{\university}{○○大学}
+\newcommand{\graduate}{大学院○○研究科}
+\newcommand{\major}{○○専攻}
+\newcommand{\course}{修士課程} % または 博士課程
+\newcommand{\studentid}{12345678}
+\newcommand{\supervisor}{指導教員：○○ ○○ 教授}
+
+\begin{document}
+
+% ===== 表紙 =====
+\begin{titlepage}
+\centering
+\vspace*{2cm}
+
+{\Large \course 論文}
+
+\vspace{2cm}
+
+{\Huge \textbf{論文タイトル}}\\
+\vspace{0.5cm}
+{\LARGE 〜サブタイトル〜}
+
+\vspace{3cm}
+
+{\Large \university}\\
+{\Large \graduate}\\
+{\Large \major}
+
+\vspace{2cm}
+
+{\Large 学籍番号：\studentid}\\
+{\Large 氏名：山田 太郎}
+
+\vspace{2cm}
+
+{\Large \supervisor}
+
+\vfill
+
+{\Large 令和6年3月}
+
+\end{titlepage}
+
+% ===== 前文 =====
+\frontmatter
+
+% 目次
+\tableofcontents
+\newpage
+
+% 図目次
+\listoffigures
+\newpage
+
+% 表目次
+\listoftables
+\newpage
+
+% ===== 要旨 =====
+\chapter*{要旨}
+\addcontentsline{toc}{chapter}{要旨}
+
+本論文では、〇〇に関する研究を行った。
+従来の〇〇手法には△△という問題があり、これを解決するため、
+新しい□□手法を提案した。
+
+提案手法の有効性を検証するため、〇〇データセットを用いて実験を行った。
+実験の結果、従来手法と比較して〇〇の性能が△△\%向上することを確認した。
+また、〇〇の場面において特に有効であることが示された。
+
+本研究の貢献は以下の通りである：
+\begin{enumerate}
+    \item 〇〇問題に対する新しいアプローチの提案
+    \item 提案手法の理論的解析
+    \item 実験による有効性の実証
+\end{enumerate}
+
+今後の課題として、〇〇への拡張や、より大規模なデータセットでの評価が挙げられる。
+
+% ===== 本文 =====
+\mainmatter
+
+\chapter{序論}
+
+\section{研究背景}
+
+近年、〇〇分野において△△の重要性が高まっている。
+特に、□□の発展に伴い、〇〇に関する研究が活発に行われている\cite{reference1}。
+
+しかし、従来の手法には以下のような課題がある：
+\begin{itemize}
+    \item 課題1：〇〇の精度が不十分
+    \item 課題2：△△の処理速度が遅い
+    \item 課題3：□□への対応が困難
+\end{itemize}
+
+\section{研究目的}
+
+本研究の目的は、従来手法の課題を解決し、
+より効率的で精度の高い〇〇手法を提案することである。
+
+具体的な研究目標は以下の通りである：
+\begin{enumerate}
+    \item 新しい〇〇アルゴリズムの開発
+    \item 理論的性能保証の導出
+    \item 実験による有効性の検証
+\end{enumerate}
+
+\section{論文の構成}
+
+本論文の構成は以下の通りである。
+
+第2章では関連研究について述べ、既存手法の問題点を明確にする。
+第3章では本研究で提案する手法について詳細に説明する。
+第4章では提案手法の理論解析を行う。
+第5章では実験設定と結果について述べる。
+第6章では結果の考察を行う。
+最後に第7章で結論と今後の課題について述べる。
+
+\chapter{関連研究}
+
+\section{従来手法の分類}
+
+〇〇に関する従来研究は、大きく以下の3つのアプローチに分類できる：
+
+\subsection{アプローチA}
+Smith et al.\cite{smith2020}が提案した手法で、△△を用いて〇〇を解決する。
+この手法の利点は□□である一方、××という問題がある。
+
+\subsection{アプローチB}
+Johnson et al.\cite{johnson2021}による手法で、〇〇を△△として定式化する。
+計算効率は良いが、精度の面で課題が残る。
+
+\subsection{アプローチC}
+最近のDeep Learningを用いたアプローチ\cite{wang2022}では、
+大規模データから特徴を自動学習する。しかし、解釈性に乏しい。
+
+\section{既存手法の問題点}
+
+前節で述べた従来手法には、以下の共通する問題点がある：
+
+\begin{enumerate}
+    \item \textbf{スケーラビリティの問題}：データサイズが大きくなると性能が劣化
+    \item \textbf{汎化性能の不足}：特定の条件下でのみ有効
+    \item \textbf{計算コストの高さ}：実用的な時間での処理が困難
+\end{enumerate}
+
+\chapter{提案手法}
+
+\section{基本アイデア}
+
+本研究では、従来手法の問題を解決するため、
+〇〇と△△を組み合わせた新しいアプローチを提案する。
+
+基本アイデアは以下の通りである：
+\begin{itemize}
+    \item アイデア1：〇〇を利用した効率的な探索
+    \item アイデア2：△△による精度向上
+    \item アイデア3：□□を用いた汎化性能改善
+\end{itemize}
+
+\section{アルゴリズム}
+
+提案アルゴリズムの擬似コードをAlgorithm \ref{alg:proposed}に示す。
+
+\begin{algorithm}[H]
+\caption{提案アルゴリズム}
+\label{alg:proposed}
+\KwIn{入力データ $X$, パラメータ $\theta$}
+\KwOut{結果 $Y$}
+\BlankLine
+初期化：$Y \leftarrow \emptyset$\;
+\For{$x \in X$}{
+    $z \leftarrow \text{前処理}(x)$\;
+    $y \leftarrow \text{メイン処理}(z, \theta)$\;
+    $Y \leftarrow Y \cup \{y\}$\;
+}
+\Return{$Y$}\;
+\end{algorithm}
+
+\subsection{前処理フェーズ}
+入力データに対して以下の前処理を行う：
+\begin{equation}
+z = f(x) = \alpha x + \beta
+\end{equation}
+ここで、$\alpha, \beta$は学習可能なパラメータである。
+
+\subsection{メイン処理フェーズ}
+前処理されたデータに対してメインアルゴリズムを適用する：
+\begin{equation}
+y = g(z, \theta) = \text{softmax}(W z + b)
+\end{equation}
+
+\section{計算量解析}
+
+提案アルゴリズムの計算量を解析する。
+
+\begin{theorem}[計算量]
+提案アルゴリズムの時間計算量は$O(n \log n)$、
+空間計算量は$O(n)$である。
+\end{theorem}
+
+\begin{proof}
+前処理フェーズは各データポイントに対して$O(1)$時間で実行できるため、
+全体で$O(n)$時間を要する。
+メイン処理フェーズでは、ソート処理が含まれるため$O(n \log n)$時間を要する。
+したがって、全体の時間計算量は$O(n \log n)$である。
+
+空間計算量については、入力データと出力データの保存に$O(n)$の領域を要し、
+作業領域として$O(1)$の領域を使用するため、全体で$O(n)$となる。
+\end{proof}
+
+\chapter{理論解析}
+
+\section{収束性解析}
+
+提案アルゴリズムの収束性について解析する。
+
+\begin{theorem}[収束性]
+提案アルゴリズムは適切な条件下で大域最適解に収束する。
+\end{theorem}
+
+\begin{proof}
+（証明の詳細をここに記述）
+\end{proof}
+
+\section{誤差解析}
+
+提案手法の理論誤差限界を導出する。
+
+\begin{lemma}[誤差限界]
+提案手法の推定誤差は高い確率で以下の範囲に収まる：
+\begin{equation}
+P(||\hat{y} - y^*|| \leq \epsilon) \geq 1 - \delta
+\end{equation}
+ここで、$\epsilon = O(\sqrt{\log(1/\delta)/n})$である。
+\end{lemma}
+
+\chapter{実験}
+
+\section{実験設定}
+
+\subsection{データセット}
+実験には以下のデータセットを使用した：
+\begin{itemize}
+    \item データセット1：〇〇データセット（サンプル数：10,000）
+    \item データセット2：△△データセット（サンプル数：50,000）
+    \item データセット3：自作データセット（サンプル数：5,000）
+\end{itemize}
+
+\subsection{比較手法}
+以下の手法と性能比較を行った：
+\begin{itemize}
+    \item Baseline1：従来手法A\cite{smith2020}
+    \item Baseline2：従来手法B\cite{johnson2021}
+    \item Baseline3：Deep Learning手法\cite{wang2022}
+\end{itemize}
+
+\subsection{評価指標}
+以下の指標で性能評価を行った：
+\begin{itemize}
+    \item 精度（Accuracy）
+    \item 適合率（Precision）
+    \item 再現率（Recall）
+    \item F1スコア
+    \item 実行時間
+\end{itemize}
+
+\section{実験結果}
+
+\subsection{精度比較}
+各手法の精度比較結果をTable \ref{tab:accuracy}に示す。
+
+\begin{table}[H]
+\centering
+\caption{精度比較結果}
+\label{tab:accuracy}
+\begin{tabular}{lcccc}
+\toprule
+手法 & データセット1 & データセット2 & データセット3 & 平均 \\
+\midrule
+Baseline1 & 0.785 & 0.792 & 0.780 & 0.786 \\
+Baseline2 & 0.823 & 0.810 & 0.815 & 0.816 \\
+Baseline3 & 0.856 & 0.862 & 0.848 & 0.855 \\
+提案手法 & \textbf{0.891} & \textbf{0.897} & \textbf{0.885} & \textbf{0.891} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{実行時間比較}
+実行時間の比較結果をFigure \ref{fig:runtime}に示す。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/runtime_comparison.png}
+\caption{実行時間比較}
+\label{fig:runtime}
+\end{figure}
+
+\section{結果分析}
+
+実験結果から以下のことが明らかになった：
+
+\begin{enumerate}
+    \item 提案手法は全てのデータセットで最高精度を達成
+    \item 実行時間は従来手法と同等レベルを維持
+    \item 特に小規模データセットで大きな性能向上を実現
+\end{enumerate}
+
+\chapter{考察}
+
+\section{結果の解釈}
+
+実験結果が示すように、提案手法は従来手法を上回る性能を実現した。
+これは以下の要因によるものと考えられる：
+
+\begin{itemize}
+    \item 〇〇の効果的な活用
+    \item △△による精度向上
+    \item □□を通じた汎化性能改善
+\end{itemize}
+
+\section{限界と課題}
+
+一方で、提案手法には以下の限界もある：
+
+\begin{enumerate}
+    \item 超大規模データでのスケーラビリティ
+    \item パラメータ調整の複雑さ
+    \item 特定ドメインでの性能不安定性
+\end{enumerate}
+
+\section{今後の発展}
+
+今後の研究方向として以下が考えられる：
+
+\begin{itemize}
+    \item 並列化による高速化
+    \item 自動パラメータ調整機能
+    \item マルチドメイン対応の拡張
+\end{itemize}
+
+\chapter{結論}
+
+\section{研究成果}
+
+本研究では、〇〇問題に対する新しいアプローチを提案し、
+その有効性を理論的・実験的に検証した。
+
+主な成果は以下の通りである：
+\begin{enumerate}
+    \item 新しい〇〇アルゴリズムの提案
+    \item 理論的性能保証の導出
+    \item 実験による有効性の実証
+\end{enumerate}
+
+\section{学術的貢献}
+
+本研究の学術的貢献は以下の点にある：
+\begin{itemize}
+    \item 理論的新規性：〇〇理論の拡張
+    \item 実用的価値：実世界問題への適用可能性
+    \item 汎用性：複数ドメインでの有効性
+\end{itemize}
+
+\section{今後の課題}
+
+今後解決すべき課題として以下が挙げられる：
+\begin{enumerate}
+    \item より大規模なデータセットでの評価
+    \item 他の応用分野での検証
+    \item 実システムへの実装と運用
+\end{enumerate}
+
+% ===== 後文 =====
+\backmatter
+
+% 謝辞
+\chapter*{謝辞}
+\addcontentsline{toc}{chapter}{謝辞}
+
+本研究を進めるにあたり、多くの方々にご指導・ご協力いただきました。
+
+指導教員の○○教授には、研究の方向性から細部にわたる技術的議論まで、
+終始丁寧なご指導をいただきました。深く感謝いたします。
+
+また、研究室の皆様には日頃から有益な議論をしていただき、
+研究の質向上に大きく貢献していただきました。
+
+最後に、長期間にわたり研究活動を支えてくれた家族に心から感謝いたします。
+
+% 参考文献
+\bibliographystyle{plainnat}
+\bibliography{../../../common/bibliography}
+
+% 付録
+\appendix
+\chapter{詳細な実験結果}
+
+\section{全データセットでの詳細結果}
+（詳細な実験データ）
+
+\section{プログラムコード}
+\begin{lstlisting}[language=Python, caption=提案アルゴリズムの実装]
+import numpy as np
+
+class ProposedMethod:
+    def __init__(self, alpha=1.0, beta=0.0):
+        self.alpha = alpha
+        self.beta = beta
+    
+    def preprocess(self, x):
+        return self.alpha * x + self.beta
+    
+    def main_process(self, z, theta):
+        return np.softmax(np.dot(theta, z))
+    
+    def fit(self, X, y):
+        # 学習処理
+        pass
+    
+    def predict(self, X):
+        # 予測処理
+        results = []
+        for x in X:
+            z = self.preprocess(x)
+            y = self.main_process(z, self.theta)
+            results.append(y)
+        return np.array(results)
+\end{lstlisting}
+
+\end{document}

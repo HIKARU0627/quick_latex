@@ -1,0 +1,145 @@
+{
+  "templates": [
+    {
+      "id": "basic",
+      "name": "基本レポート",
+      "description": "一般的な学術レポート用",
+      "file": "report-basic.tex",
+      "enabled": true,
+      "category": "general"
+    },
+    {
+      "id": "experiment",
+      "name": "実験レポート",
+      "description": "実験・データ分析用",
+      "file": "report-experiment.tex",
+      "enabled": true,
+      "category": "science"
+    },
+    {
+      "id": "programming",
+      "name": "プログラミングレポート",
+      "description": "コード・アルゴリズム用",
+      "file": "report-programming.tex",
+      "enabled": true,
+      "category": "programming"
+    },
+    {
+      "id": "thesis",
+      "name": "卒論・修論",
+      "description": "学位論文用",
+      "file": "thesis.tex",
+      "enabled": true,
+      "category": "academic"
+    },
+    {
+      "id": "presentation",
+      "name": "プレゼンテーション",
+      "description": "発表スライド用",
+      "file": "presentation-beamer.tex",
+      "enabled": true,
+      "category": "presentation"
+    },
+    {
+      "id": "case-study",
+      "name": "ケーススタディ",
+      "description": "企業・組織分析用",
+      "file": "report-case-study.tex",
+      "enabled": true,
+      "category": "business"
+    },
+    {
+      "id": "review",
+      "name": "文献レビュー",
+      "description": "先行研究調査用",
+      "file": "report-review.tex",
+      "enabled": true,
+      "category": "research"
+    },
+    {
+      "id": "discussion",
+      "name": "ディスカッション",
+      "description": "議論・検討用",
+      "file": "report-discussion.tex",
+      "enabled": true,
+      "category": "general"
+    },
+    {
+      "id": "math",
+      "name": "数学レポート",
+      "description": "数学理論・証明用",
+      "file": "report-math.tex",
+      "enabled": true,
+      "category": "mathematics"
+    },
+    {
+      "id": "physics-experiment",
+      "name": "物理実験レポート",
+      "description": "物理実験・測定用",
+      "file": "report-physics-experiment.tex",
+      "enabled": true,
+      "category": "physics"
+    },
+    {
+      "id": "physics-theory",
+      "name": "物理理論レポート",
+      "description": "物理理論・数式展開用",
+      "file": "report-physics-theory.tex",
+      "enabled": true,
+      "category": "physics"
+    }
+  ],
+  "categories": [
+    {
+      "id": "general",
+      "name": "一般",
+      "description": "汎用的なテンプレート"
+    },
+    {
+      "id": "science",
+      "name": "理科",
+      "description": "理科系レポート"
+    },
+    {
+      "id": "mathematics",
+      "name": "数学",
+      "description": "数学系レポート"
+    },
+    {
+      "id": "physics",
+      "name": "物理",
+      "description": "物理系レポート"
+    },
+    {
+      "id": "programming",
+      "name": "プログラミング",
+      "description": "プログラミング系レポート"
+    },
+    {
+      "id": "academic",
+      "name": "学術",
+      "description": "学術論文"
+    },
+    {
+      "id": "business",
+      "name": "ビジネス",
+      "description": "ビジネス分析"
+    },
+    {
+      "id": "research",
+      "name": "研究",
+      "description": "研究関連"
+    },
+    {
+      "id": "presentation",
+      "name": "プレゼンテーション",
+      "description": "発表資料"
+    }
+  ],
+  "settings": {
+    "version": "1.0.0",
+    "default_template": "basic",
+    "show_disabled": false,
+    "group_by_category": true
+  }
+}

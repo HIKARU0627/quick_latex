@@ -1,0 +1,63 @@
+services:
+  latex-api:
+    build:
+      context: ../
+      dockerfile: api/Dockerfile
+    ports:
+      - "${LATEX_API_PORT:-5001}:${LATEX_API_PORT:-5001}"
+    volumes:
+      - ../:/app
+      - /var/run/docker.sock:/var/run/docker.sock  # Docker-in-Docker用
+    environment:
+      - FLASK_ENV=development
+      - FLASK_DEBUG=true
+      - LATEX_API_HOST=0.0.0.0
+      - LATEX_API_PORT=${LATEX_API_PORT:-5001}
+    depends_on:
+      - latex-engine
+    networks:
+      - latex-network
+    restart: unless-stopped
+
+  latex-engine:
+    image: texlive/texlive:latest
+    volumes:
+      - ../:/workspace
+    working_dir: /workspace
+    command: ["sleep", "infinity"]  # コンテナを起動状態に保持
+    networks:
+      - latex-network
+    restart: unless-stopped
+
+  # 開発用のデータベース（将来的にプロジェクト情報を保存する場合）
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: latex_projects
+      POSTGRES_USER: latex_user
+      POSTGRES_PASSWORD: latex_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - latex-network
+    restart: unless-stopped
+
+  # API管理用のAdminer
+  adminer:
+    image: adminer:4.8.1
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    networks:
+      - latex-network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+
+networks:
+  latex-network:
+    driver: bridge
